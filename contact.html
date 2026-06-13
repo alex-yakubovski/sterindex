@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — SterIndex</title>
+<meta name="description" content="Contact SterIndex — questions, corrections, and partnership enquiries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0c1410;--ink2:#1e3028;--mid:#3a5a48;--sub:#6b8c7a;
+  --pale:#a8c4b4;--rim:#d4e4db;--bg:#f0f5f2;--paper:#f8faf9;
+  --white:#ffffff;--green:#1a7a45;--green2:#2ea65c;--green-pale:#e4f3eb;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --max:1100px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+.topbar{background:var(--ink);padding:.7rem 2rem;border-bottom:3px solid var(--green);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.topbar-logo{font-family:var(--cond);font-size:1.5rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--white);text-decoration:none;}
+.topbar-logo em{color:var(--green2);font-style:normal;}
+.back-link{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pale);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;}
+.back-link:hover{color:var(--green2);}
+.back-link::before{content:'←';font-size:14px;}
+.page-wrap{max-width:800px;margin:3.5rem auto;padding:0 2rem;flex:1;}
+.page-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+.page-kicker::before{content:'';display:inline-block;width:24px;height:2px;background:var(--green);}
+h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:600;line-height:1.15;color:var(--ink);margin-bottom:.75rem;}
+.lead{font-size:15px;color:var(--mid);margin-bottom:2.5rem;max-width:520px;line-height:1.8;}
+
+/* Layout */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+
+/* Form */
+.form-card{background:var(--paper);border:1px solid var(--rim);border-radius:10px;padding:2rem;}
+.form-group{margin-bottom:1.25rem;}
+.form-group label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:.5rem;}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;padding:10px 12px;
+  font-family:var(--body);font-size:14px;
+  border:1px solid var(--rim);border-radius:4px;
+  background:var(--white);color:var(--ink);
+  transition:border-color .15s;outline:none;
+  resize:vertical;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--green);}
+.form-group textarea{min-height:130px;}
+.submit-btn{
+  width:100%;padding:12px;
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
+  background:var(--green);color:var(--white);
+  border:none;border-radius:4px;cursor:pointer;
+  transition:background .15s;
+}
+.submit-btn:hover{background:var(--green2);}
+.form-note{font-family:var(--mono);font-size:10px;color:var(--sub);margin-top:.75rem;text-align:center;line-height:1.6;}
+
+/* Success message */
+.success-msg{
+  display:none;
+  background:var(--green-pale);border:1px solid var(--green);
+  border-radius:8px;padding:1.5rem;text-align:center;
+  font-family:var(--mono);font-size:13px;color:var(--green);
+}
+.success-msg .icon{font-size:2rem;display:block;margin-bottom:.5rem;}
+
+/* Info sidebar */
+.info-sidebar{}
+.info-block{margin-bottom:1.75rem;}
+.info-block h3{font-family:var(--cond);font-size:.95rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:.6rem;display:flex;align-items:center;gap:8px;}
+.info-block h3::before{content:'';display:inline-block;width:3px;height:1em;background:var(--green);border-radius:2px;flex-shrink:0;}
+.info-block p{font-size:14px;line-height:1.75;color:var(--mid);}
+.response-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--sub);background:var(--paper);border:1px solid var(--rim);border-radius:100px;padding:4px 12px;margin-top:.5rem;}
+.response-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green2);flex-shrink:0;}
+
+footer{background:var(--ink);border-top:3px solid var(--green);margin-top:4rem;font-family:var(--mono);font-size:11px;color:var(--sub);letter-spacing:.05em;}
+.footer-bottom{max-width:var(--max);margin:0 auto;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;}
+.footer-copy strong{color:var(--pale);}
+.footer-links{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+.footer-links a{color:var(--sub);text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:var(--green2);}
+.footer-sep{color:#2a4035;}
+
+@media(max-width:680px){
+  .contact-layout{grid-template-columns:1fr;}
+  .page-wrap{margin:2rem auto;padding:0 1rem;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;padding:1rem;}
+  .footer-links{gap:.75rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">Ster<em>Index</em></a>
+  <a class="back-link" href="index.html">Back to index</a>
+</div>
+
+<div class="page-wrap">
+  <div class="page-kicker">SterIndex · Contact</div>
+  <h1>Get in Touch</h1>
+  <p class="lead">Questions about our content, corrections to an article, premium directory access, or partnership enquiries — use the form below.</p>
+
+  <div class="contact-layout">
+
+    <!-- Form -->
+    <div class="form-card">
+      <form id="contactForm" action="https://formspree.io/f/mojzpwwg" method="POST">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@hospital.org" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option value="">Select a topic…</option>
+            <option value="Content correction">Content correction</option>
+            <option value="Premium directory access">Premium directory access</option>
+            <option value="Partnership / advertising">Partnership / advertising</option>
+            <option value="Copyright concern">Copyright concern</option>
+            <option value="General question">General question</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Your message…" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+        <p class="form-note">No spam. Your email is used only to reply to your message.</p>
+      </form>
+      <div class="success-msg" id="successMsg">
+        <span class="icon">✓</span>
+        Message sent. We'll be in touch shortly.
+      </div>
+    </div>
+
+    <!-- Info sidebar -->
+    <div class="info-sidebar">
+      <div class="info-block">
+        <h3>Response Time</h3>
+        <p>We aim to respond to all enquiries within 2–3 business days.</p>
+        <span class="response-badge">Typically within 48 hours</span>
+      </div>
+      <div class="info-block">
+        <h3>Premium Directory Access</h3>
+        <p>Premium members get direct clickable links to manufacturer websites in the Producers Directory. Contact us to learn about access options.</p>
+      </div>
+      <div class="info-block">
+        <h3>Content Corrections</h3>
+        <p>If you spot an inaccuracy in an article summary or an error in the Producers Directory, please let us know. Include the article title or company name and we'll review it promptly.</p>
+      </div>
+      <div class="info-block">
+        <h3>Copyright Concerns</h3>
+        <p>If you are a rights holder and believe any content has been used in error, contact us and we will respond within 48 hours.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; <span id="yr"></span> <strong>SterIndex</strong> &nbsp;·&nbsp; All rights reserved</div>
+    <div class="footer-links">
+      <a href="index.html">News</a>
+      <span class="footer-sep">·</span>
+      <a href="producers.html">Producers</a>
+      <span class="footer-sep">·</span>
+      <a href="about.html">About Us</a>
+      <span class="footer-sep">·</span>
+      <a href="privacy.html">Privacy Policy</a>
+      <span class="footer-sep">·</span>
+      <a href="legal.html">Legal Notice</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector(".submit-btn");
+  btn.textContent = "Sending…";
+  btn.disabled = true;
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" }
+    });
+    if (res.ok) {
+      form.style.display = "none";
+      document.getElementById("successMsg").style.display = "block";
+    } else {
+      btn.textContent = "Error — try again";
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = "Error — try again";
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — SterIndex</title>
+<meta name="description" content="About SterIndex — an independent intelligence digest for sterile processing and surgical instrument professionals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0c1410;--ink2:#1e3028;--mid:#3a5a48;--sub:#6b8c7a;
+  --pale:#a8c4b4;--rim:#d4e4db;--bg:#f0f5f2;--paper:#f8faf9;
+  --white:#ffffff;--green:#1a7a45;--green2:#2ea65c;--green-pale:#e4f3eb;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --max:1100px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+.topbar{background:var(--ink);padding:.7rem 2rem;border-bottom:3px solid var(--green);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.topbar-logo{font-family:var(--cond);font-size:1.5rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--white);text-decoration:none;}
+.topbar-logo em{color:var(--green2);font-style:normal;}
+.back-link{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pale);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;}
+.back-link:hover{color:var(--green2);}
+.back-link::before{content:'←';font-size:14px;}
+.page-wrap{max-width:800px;margin:3.5rem auto;padding:0 2rem;flex:1;}
+.page-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+.page-kicker::before{content:'';display:inline-block;width:24px;height:2px;background:var(--green);}
+h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:600;line-height:1.15;color:var(--ink);margin-bottom:2rem;}
+.lead{font-family:var(--serif);font-size:1.25rem;line-height:1.8;color:var(--ink2);margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--rim);}
+.section{margin-bottom:2.5rem;}
+.section h2{font-family:var(--cond);font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+.section h2::before{content:'';display:inline-block;width:3px;height:1em;background:var(--green);border-radius:2px;}
+.section p{font-size:15px;line-height:1.85;color:var(--mid);margin-bottom:.9rem;}
+.section p:last-child{margin-bottom:0;}
+.values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1rem;}
+.value-card{background:var(--paper);border:1px solid var(--rim);border-radius:8px;padding:1.25rem;border-top:3px solid var(--green);}
+.value-card h3{font-family:var(--cond);font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:.5rem;}
+.value-card p{font-size:13px;line-height:1.7;color:var(--mid);}
+.contact-strip{background:var(--ink);border-radius:8px;padding:1.5rem 2rem;margin-top:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.contact-strip p{font-family:var(--mono);font-size:13px;color:var(--pale);}
+.contact-btn{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--green);color:var(--white);padding:10px 22px;border-radius:4px;text-decoration:none;transition:background .15s;}
+.contact-btn:hover{background:var(--green2);}
+footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;font-family:var(--mono);font-size:11px;color:var(--sub);letter-spacing:.05em;}
+.footer-bottom{max-width:var(--max);margin:0 auto;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;}
+.footer-copy strong{color:var(--pale);}
+.footer-links{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+.footer-links a{color:var(--sub);text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:var(--green2);}
+.footer-sep{color:#2a4035;}
+@media(max-width:600px){.page-wrap{margin:2rem auto;padding:0 1rem;}.footer-bottom{flex-direction:column;align-items:flex-start;padding:1rem;}.footer-links{gap:.75rem;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">Ster<em>Index</em></a>
+  <a class="back-link" href="index.html">Back to index</a>
+</div>
+
+<div class="page-wrap">
+  <div class="page-kicker">About</div>
+  <h1>Sterile Technology Intelligence for Medical Professionals</h1>
+
+  <p class="lead">
+    SterIndex is an independent news aggregation and editorial digest focused exclusively
+    on sterile processing, surgical instrumentation, and medical device decontamination.
+    We track research, regulatory updates, and industry developments so sterile processing
+    departments, infection prevention specialists, and OR professionals don't have to.
+  </p>
+
+  <div class="section">
+    <h2>What We Do</h2>
+    <p>
+      Every article on SterIndex is sourced from publicly available, peer-reviewed, or
+      regulatory publications — PubMed, the FDA, the CDC, and the WHO. Our editorial
+      process converts dense abstracts and regulatory notices into concise, readable
+      summaries written for working professionals, not academic audiences.
+    </p>
+    <p>
+      The Producers Directory lists 100 global manufacturers operating in or targeting
+      the US market, covering capital equipment, surgical instruments, instrument care
+      consumables, and sterile packaging — with live filtering by category and FDA
+      clearance status.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Who It's For</h2>
+    <p>
+      SterIndex is built for sterile processing department (SPD) managers and technicians,
+      infection preventionists, OR charge nurses, biomedical engineers, surgical instrument
+      specialists, and anyone responsible for maintaining sterility standards in a clinical
+      or surgical environment.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Our Principles</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <h3>Source First</h3>
+        <p>Every summary links directly to the original publication. We describe — we don't editorialize or advise.</p>
+      </div>
+      <div class="value-card">
+        <h3>No Paywalls</h3>
+        <p>All news content on SterIndex is free to read. No registration, no subscriptions required.</p>
+      </div>
+      <div class="value-card">
+        <h3>Independent</h3>
+        <p>SterIndex is not affiliated with any manufacturer, distributor, or industry association listed on this site.</p>
+      </div>
+      <div class="value-card">
+        <h3>Accurate</h3>
+        <p>We source exclusively from peer-reviewed journals and official regulatory bodies. No press releases, no sponsored content.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Technology</h2>
+    <p>
+      SterIndex is a fully static website hosted on GitHub Pages. Article summaries are
+      generated using a locally hosted AI language model (Ollama / Mistral) running on
+      private infrastructure. No reader data is collected or transmitted to third parties.
+      The site contains no tracking scripts, advertising, or analytics.
+    </p>
+  </div>
+
+  <div class="contact-strip">
+    <p>Questions, corrections, or partnership inquiries?</p>
+    <a class="contact-btn" href="contact.html">Get in touch</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; <span id="yr"></span> <strong>SterIndex</strong> &nbsp;·&nbsp; All rights reserved</div>
+    <div class="footer-links">
+      <a href="index.html">News</a>
+      <span class="footer-sep">·</span>
+      <a href="producers.html">Producers</a>
+      <span class="footer-sep">·</span>
+      <a href="privacy.html">Privacy Policy</a>
+      <span class="footer-sep">·</span>
+      <a href="contact.html">Contact</a>
+      <span class="footer-sep">·</span>
+      <a href="legal.html">Legal Notice</a>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById("yr").textContent=new Date().getFullYear();</script>
+</body>
+</html>
