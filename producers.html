@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Producers Directory — SterIndex</title>
+<meta name="description" content="Directory of 100 global sterile technology manufacturers targeting the US market.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0c1410;--ink2:#1e3028;--mid:#3a5a48;--sub:#6b8c7a;
+  --pale:#a8c4b4;--rim:#d4e4db;--bg:#f0f5f2;--paper:#f8faf9;
+  --white:#ffffff;--green:#1a7a45;--green2:#2ea65c;--green-pale:#e4f3eb;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --max:1200px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+.topbar{background:var(--ink);padding:.7rem 2rem;border-bottom:3px solid var(--green);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.topbar-logo{font-family:var(--cond);font-size:1.5rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--white);text-decoration:none;}
+.topbar-logo em{color:var(--green2);font-style:normal;}
+.topbar-nav{display:flex;align-items:center;gap:1.5rem;}
+.topbar-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pale);text-decoration:none;transition:color .15s;}
+.topbar-nav a:hover{color:var(--green2);}
+.page-header{background:var(--ink2);border-bottom:1px solid #2a4035;padding:2rem 2rem 1.75rem;}
+.page-header-inner{max-width:var(--max);margin:0 auto;}
+.page-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--green2);margin-bottom:.75rem;display:flex;align-items:center;gap:10px;}
+.page-kicker::before{content:'';display:inline-block;width:24px;height:2px;background:var(--green2);}
+.page-header h1{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;color:var(--paper);line-height:1.1;margin-bottom:.5rem;}
+.page-header p{font-size:13px;color:var(--sub);font-family:var(--mono);}
+.controls{background:var(--paper);border-bottom:1px solid var(--rim);padding:1.1rem 2rem;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.controls-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.search-wrap{position:relative;flex:1;min-width:180px;}
+.search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--sub);pointer-events:none;}
+#searchInput{width:100%;padding:8px 10px 8px 32px;font-family:var(--mono);font-size:12px;border:1px solid var(--rim);border-radius:4px;background:var(--white);color:var(--ink);transition:border-color .15s;outline:none;}
+#searchInput:focus{border-color:var(--green);}
+#searchInput::placeholder{color:var(--pale);}
+#categoryFilter{padding:8px 10px;font-family:var(--mono);font-size:12px;border:1px solid var(--rim);border-radius:4px;background:var(--white);color:var(--ink);outline:none;cursor:pointer;min-width:200px;}
+#categoryFilter:focus{border-color:var(--green);}
+.checkbox-wrap{display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;white-space:nowrap;}
+.checkbox-wrap input[type=checkbox]{width:15px;height:15px;accent-color:var(--green);cursor:pointer;}
+.checkbox-wrap span{font-family:var(--mono);font-size:12px;color:var(--mid);}
+.controls-right{margin-left:auto;display:flex;align-items:center;gap:.75rem;}
+#resultCount{font-family:var(--mono);font-size:11px;color:var(--sub);white-space:nowrap;}
+.reset-btn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:3px;border:1px solid var(--rim);background:transparent;color:var(--sub);cursor:pointer;transition:all .15s;}
+.reset-btn:hover{border-color:var(--green);color:var(--green);}
+main{max-width:var(--max);margin:0 auto;padding:1.5rem 2rem 4rem;width:100%;flex:1;}
+.table-wrap{overflow-x:auto;border:1px solid var(--rim);border-radius:8px;background:var(--paper);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead tr{background:var(--ink);}
+thead th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:11px 14px;text-align:left;font-weight:500;color:var(--pale);white-space:nowrap;}
+thead th:first-child{border-radius:8px 0 0 0;}
+thead th:last-child{border-radius:0 8px 0 0;text-align:center;}
+tbody tr{border-bottom:1px solid var(--rim);transition:background .12s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--green-pale);}
+tbody td{padding:11px 14px;vertical-align:middle;}
+tbody td:last-child{text-align:center;}
+.td-company{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink);}
+.td-country{font-family:var(--mono);font-size:10px;color:var(--sub);}
+.td-category{font-family:var(--mono);font-size:9px;letter-spacing:.04em;text-transform:uppercase;background:var(--ink2);color:var(--pale);padding:3px 8px;border-radius:2px;white-space:nowrap;display:inline-block;line-height:1.6;}
+.td-products{font-size:12px;color:var(--mid);max-width:240px;line-height:1.5;}
+.td-fda-yes{font-family:var(--mono);font-size:10px;text-transform:uppercase;background:#d4f0e0;color:#1a5c34;border:1px solid #a8d8be;padding:3px 8px;border-radius:100px;white-space:nowrap;display:inline-block;}
+.td-fda-no{font-family:var(--mono);font-size:12px;color:var(--pale);}
+.btn-visit{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;background:var(--green);color:var(--white);padding:5px 12px;border-radius:3px;text-decoration:none;transition:background .15s;border:none;cursor:pointer;white-space:nowrap;}
+.btn-visit:hover{background:var(--green2);}
+.btn-visit svg{width:10px;height:10px;}
+.btn-premium{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;background:transparent;color:var(--sub);padding:5px 12px;border-radius:3px;border:1px solid var(--rim);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.btn-premium:hover{border-color:var(--mid);color:var(--mid);}
+.btn-premium svg{width:10px;height:10px;}
+.empty-row td{text-align:center;padding:3rem;font-family:var(--mono);font-size:12px;color:var(--sub);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(5,10,7,.75);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--paper);border-radius:10px;border:1px solid var(--rim);padding:2rem;max-width:360px;width:90%;box-shadow:0 24px 60px rgba(0,0,0,.4);text-align:center;}
+.modal-icon{font-size:2rem;margin-bottom:1rem;}
+.modal h3{font-family:var(--serif);font-size:1.4rem;color:var(--ink);margin-bottom:.5rem;}
+.modal p{font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:1.5rem;}
+.modal-close{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--white);border:none;padding:10px 24px;border-radius:4px;cursor:pointer;transition:background .15s;}
+.modal-close:hover{background:var(--ink2);}
+footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;font-family:var(--mono);font-size:11px;color:var(--sub);letter-spacing:.05em;}
+.footer-bottom{max-width:var(--max);margin:0 auto;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;}
+.footer-copy strong{color:var(--pale);}
+.footer-links{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+.footer-links a{color:var(--sub);text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:var(--green2);}
+.footer-sep{color:#2a4035;}
+@media(max-width:768px){
+  .controls-inner{flex-direction:column;align-items:stretch;}
+  .controls-right{margin-left:0;}
+  #categoryFilter{width:100%;}
+  main{padding:1rem 1rem 3rem;}
+  .td-products{max-width:140px;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;padding:1rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">Ster<em>Index</em></a>
+  <div class="topbar-nav">
+    <a href="index.html">← News Index</a>
+    <a href="legal.html">Legal</a>
+    <a href="YOUR_CONTACT_URL">Contact</a>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-kicker">Industry Directory · 100 Companies</div>
+    <h1>Sterile Technology Producers</h1>
+    <p>Global manufacturers &amp; suppliers operating in or targeting the US market · Surgical sterilization, endoscopy, instrument care, sterile packaging</p>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search company, product, country…">
+    </div>
+    <select id="categoryFilter"><option value="">All Categories</option></select>
+    <label class="checkbox-wrap">
+      <input type="checkbox" id="fdaFilter">
+      <span>FDA Cleared Only</span>
+    </label>
+    <div class="controls-right">
+      <span id="resultCount"></span>
+      <button class="reset-btn" onclick="resetFilters()">Reset</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="table-wrap">
+    <table id="producersTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Company</th>
+          <th>HQ Country</th>
+          <th>Category</th>
+          <th>Key Products</th>
+          <th>FDA</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</main>
+
+<div class="modal-overlay" id="premiumModal">
+  <div class="modal">
+    <div class="modal-icon">🔒</div>
+    <h3>Premium Feature</h3>
+    <p>Direct website links are available to premium members.<br>Contact administration for access.</p>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; <span id="yr"></span> <strong>SterIndex</strong> &nbsp;·&nbsp; All rights reserved</div>
+    <div class="footer-links">
+      <a href="index.html">News</a>
+      <span class="footer-sep">·</span>
+      <a href="YOUR_ABOUT_URL">About Us</a>
+      <span class="footer-sep">·</span>
+      <a href="YOUR_PRIVACY_URL">Privacy Policy</a>
+      <span class="footer-sep">·</span>
+      <a href="YOUR_CONTACT_URL">Contact</a>
+      <span class="footer-sep">·</span>
+      <a href="legal.html">Legal Notice</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const COMPANIES = [
+  // ── PART 1 · Capital Equipment ────────────────────────────────────────────
+  {company_name:"STERIS plc",hq_country:"USA / Ireland",main_category:"Capital Equipment",key_products:"AMSCO steam sterilizers, V-PRO low-temp sterilizers, washer-disinfectors, sterility assurance",fda_approved:true,premium_link_active:true,website_url:"https://www.steris.com"},
+  {company_name:"Getinge AB",hq_country:"Sweden",main_category:"Capital Equipment",key_products:"GSS steam sterilizers, PHS washer-disinfectors, endoscope reprocessors, sterility monitoring",fda_approved:true,premium_link_active:true,website_url:"https://www.getinge.com"},
+  {company_name:"Belimed AG",hq_country:"Switzerland",main_category:"Capital Equipment",key_products:"WD-series washer-disinfectors, steam sterilizers, sterile processing workflow systems",fda_approved:true,premium_link_active:false,website_url:"https://www.belimed.com"},
+  {company_name:"Tuttnauer USA",hq_country:"Israel / USA",main_category:"Capital Equipment",key_products:"Bench-top and floor-standing autoclaves, washer-disinfectors, sterilization accessories",fda_approved:true,premium_link_active:false,website_url:"https://tuttnauer.com"},
+  {company_name:"Systec GmbH",hq_country:"Germany",main_category:"Capital Equipment",key_products:"Laboratory and medical autoclaves, bench-top steam sterilizers, vacuum sterilizers",fda_approved:false,premium_link_active:false,website_url:"https://www.systec-lab.com"},
+  {company_name:"Matachana Group",hq_country:"Spain",main_category:"Capital Equipment",key_products:"Steam sterilizers, EO sterilizers, washer-disinfectors, low-temp H2O2 sterilizers",fda_approved:true,premium_link_active:false,website_url:"https://www.matachana.com"},
+  {company_name:"Fedegari Group",hq_country:"Italy",main_category:"Capital Equipment",key_products:"Pharmaceutical and medical steam sterilizers, overkill sterilization systems, isolators",fda_approved:true,premium_link_active:false,website_url:"https://www.fedegari.com"},
+  {company_name:"Advanced Sterilization Products (ASP)",hq_country:"USA",main_category:"Capital Equipment",key_products:"STERRAD hydrogen peroxide plasma sterilizers, CYCLESURE biological indicators",fda_approved:true,premium_link_active:true,website_url:"https://www.asp.com"},
+  {company_name:"Andersen Products",hq_country:"USA",main_category:"Capital Equipment",key_products:"EtO sterilizers, ethylene oxide sterilization accessories, aeration units",fda_approved:true,premium_link_active:false,website_url:"https://www.anpro.com"},
+  {company_name:"TSO3 Inc.",hq_country:"Canada",main_category:"Capital Equipment",key_products:"Sterizone VP4 ozone sterilizer, low-temperature sterilization for heat-sensitive devices",fda_approved:true,premium_link_active:false,website_url:"https://www.tso3.com"},
+  {company_name:"Medivators (Cantel Medical)",hq_country:"USA",main_category:"Capital Equipment",key_products:"DSD-201 endoscope reprocessors, Advantage Plus AER, high-level disinfection systems",fda_approved:true,premium_link_active:false,website_url:"https://www.medivators.com"},
+  {company_name:"Wassenburg Medical",hq_country:"Netherlands",main_category:"Capital Equipment",key_products:"WD440 endoscope washer-disinfectors, drying and storage cabinets, leak testers",fda_approved:false,premium_link_active:false,website_url:"https://www.wassenburg.com"},
+  // ── PART 1 · Surgical Instruments ────────────────────────────────────────
+  {company_name:"Aesculap AG (B. Braun)",hq_country:"Germany",main_category:"Surgical Instruments",key_products:"Forceps, needle holders, scissors, retractors, sterile container trays, HF surgery",fda_approved:true,premium_link_active:false,website_url:"https://www.aesculap.com"},
+  {company_name:"Karl Storz SE & Co. KG",hq_country:"Germany",main_category:"Surgical Instruments",key_products:"Rigid endoscopes, laparoscopes, arthroscopes, MIS instruments, sterile trays",fda_approved:true,premium_link_active:true,website_url:"https://www.karlstorz.com"},
+  {company_name:"Stryker Corporation",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Orthopedic instruments, power tools, trauma sets, sterile container systems",fda_approved:true,premium_link_active:false,website_url:"https://www.stryker.com"},
+  {company_name:"Olympus Corporation",hq_country:"Japan",main_category:"Surgical Instruments",key_products:"Flexible and rigid endoscopes, biopsy forceps, laparoscopic instruments",fda_approved:true,premium_link_active:false,website_url:"https://www.olympus-global.com"},
+  {company_name:"Integra LifeSciences",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Neurosurgical instruments, microsurgery tools, Jarit general surgery instruments",fda_approved:true,premium_link_active:false,website_url:"https://www.integralife.com"},
+  {company_name:"Medline Industries",hq_country:"USA",main_category:"Surgical Instruments",key_products:"General surgery instruments, OR trays, custom procedure trays, clamps, retractors",fda_approved:true,premium_link_active:false,website_url:"https://www.medline.com"},
+  {company_name:"Symmetry Surgical",hq_country:"USA / Pakistan",main_category:"Surgical Instruments",key_products:"Electrosurgical instruments, retractors, clamps, general surgery hand instruments",fda_approved:true,premium_link_active:false,website_url:"https://www.symmetrysurgical.com"},
+  {company_name:"Sklar Surgical Instruments",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Full-line surgical instruments, forceps, needle holders, scissors, clamps, curettes",fda_approved:true,premium_link_active:false,website_url:"https://www.sklarcorp.com"},
+  {company_name:"Roboz Surgical Instrument Co.",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Microsurgery instruments, ophthalmic instruments, neurosurgery tools",fda_approved:true,premium_link_active:false,website_url:"https://www.roboz.com"},
+  {company_name:"Hu-Friedy (SDI Health)",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Dental and surgical instruments, cassette trays, instrument management systems",fda_approved:true,premium_link_active:false,website_url:"https://www.hu-friedy.com"},
+  // ── PART 1 · Instrument Care ──────────────────────────────────────────────
+  {company_name:"Ruhof Corporation",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Endozime enzymatic detergents, instrument brushes, AW multi-enzymatic cleaners",fda_approved:true,premium_link_active:false,website_url:"https://www.ruhof.com"},
+  {company_name:"Ecolab Inc.",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Instrument detergents, disinfectants, enzymatic pre-cleaners, surface wipes",fda_approved:true,premium_link_active:false,website_url:"https://www.ecolab.com"},
+  {company_name:"Certol International",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"ProEZ enzymatic detergents, instrument lubricants, pre-cleaning foams and sprays",fda_approved:true,premium_link_active:false,website_url:"https://www.certol.com"},
+  {company_name:"3M Health Care",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Attest biological indicators, Comply chemical indicators, sterilization pouches, tape",fda_approved:true,premium_link_active:false,website_url:"https://www.3m.com/healthcare"},
+  {company_name:"Crosstex International",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Sterilization pouches, self-seal bags, biological indicators, chemical integrators",fda_approved:true,premium_link_active:false,website_url:"https://www.crosstex.com"},
+  {company_name:"Propper Manufacturing",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Biological indicators, chemical indicators, sterilization monitoring, steam test packs",fda_approved:true,premium_link_active:false,website_url:"https://www.propper.com"},
+  {company_name:"Steris (Verify brand)",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Biological and chemical indicators, Reliance enzymatic detergents, instrument lubricants",fda_approved:true,premium_link_active:false,website_url:"https://www.steris.com/consumables"},
+  // ── PART 1 · Sterile Packaging ────────────────────────────────────────────
+  {company_name:"Aesculap (Case & Tray Systems)",hq_country:"Germany",main_category:"Sterile Packaging & Containers",key_products:"Aesculap rigid sterilization containers, Inlet system, filter retention plates",fda_approved:true,premium_link_active:false,website_url:"https://www.aesculap.com/sterile-containers"},
+  {company_name:"Medline Sterile Packaging",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Sterilization wraps, CSR wrap, poly pouches, peel pouches, header bags",fda_approved:true,premium_link_active:false,website_url:"https://www.medline.com/sterile-packaging"},
+  {company_name:"Halyard Health (Owens & Minor)",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"KIMGUARD sterilization wrap, ULTRA WRAP, polypropylene non-woven wraps",fda_approved:true,premium_link_active:false,website_url:"https://www.halyardhealth.com"},
+  {company_name:"Symmetry Medical (Integer Holdings)",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Custom sterile packaging, rigid trays, thermoformed packaging for medical devices",fda_approved:true,premium_link_active:false,website_url:"https://www.integerholdings.com"},
+  {company_name:"Fortive / Censis Technologies",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Instrument tracking software, SPD tray management, sterility assurance documentation",fda_approved:false,premium_link_active:false,website_url:"https://www.censistechnologies.com"},
+  // ── PART 2 · Capital Equipment ────────────────────────────────────────────
+  {company_name:"SciCan Ltd.",hq_country:"Canada",main_category:"Capital Equipment",key_products:"STATIM cassette autoclaves, HYDRIM washer-disinfectors, BRAVO bench-top sterilizers",fda_approved:true,premium_link_active:false,website_url:"https://www.scican.com"},
+  {company_name:"Melag Medizintechnik",hq_country:"Germany",main_category:"Capital Equipment",key_products:"Vacuklav bench-top autoclaves, Cliniclave floor-standing sterilizers, sealing devices",fda_approved:false,premium_link_active:false,website_url:"https://www.melag.com"},
+  {company_name:"Sakura Seiki Co.",hq_country:"Japan",main_category:"Capital Equipment",key_products:"EO sterilizers, low-temperature plasma sterilization equipment, accessory sets",fda_approved:false,premium_link_active:false,website_url:"https://www.sakura-seiki.co.jp"},
+  {company_name:"Priorclave Ltd.",hq_country:"United Kingdom",main_category:"Capital Equipment",key_products:"Research and laboratory autoclaves, top-loading and front-loading steam sterilizers",fda_approved:false,premium_link_active:false,website_url:"https://www.priorclave.co.uk"},
+  {company_name:"Celitron Medical Technologies",hq_country:"Hungary",main_category:"Capital Equipment",key_products:"ISS medical waste autoclaves, compact steam sterilizers for clinical settings",fda_approved:false,premium_link_active:false,website_url:"https://www.celitron.com"},
+  {company_name:"BHT Hygienetechnik",hq_country:"Germany",main_category:"Capital Equipment",key_products:"Large-capacity washer-disinfectors, tunnel washers, CSSD workflow automation systems",fda_approved:false,premium_link_active:false,website_url:"https://www.bht-online.de"},
+  {company_name:"Shinva Medical Instrument Co.",hq_country:"China",main_category:"Capital Equipment",key_products:"Steam sterilizers, EO sterilizers, washer-disinfectors, plasma sterilizers",fda_approved:false,premium_link_active:false,website_url:"https://www.shinva.com"},
+  {company_name:"W&H Dentalwerk",hq_country:"Austria",main_category:"Capital Equipment",key_products:"Lisa and Lexa autoclaves, Teon washer-disinfectors for dental and surgical instruments",fda_approved:true,premium_link_active:false,website_url:"https://www.wh.com"},
+  {company_name:"Noxilizer Inc.",hq_country:"USA",main_category:"Capital Equipment",key_products:"Nitrogen dioxide (NO2) sterilization systems, terminal sterilization for medical devices",fda_approved:true,premium_link_active:false,website_url:"https://www.noxilizer.com"},
+  {company_name:"Sterigenics International",hq_country:"USA",main_category:"Capital Equipment",key_products:"Contract EO sterilization, gamma irradiation, e-beam sterilization services",fda_approved:true,premium_link_active:false,website_url:"https://www.sterigenics.com"},
+  // ── PART 2 · Surgical Instruments ────────────────────────────────────────
+  {company_name:"Richard Wolf GmbH",hq_country:"Germany",main_category:"Surgical Instruments",key_products:"Rigid endoscopes, laparoscopic instruments, urological instruments, arthroscopes",fda_approved:true,premium_link_active:false,website_url:"https://www.richard-wolf.com"},
+  {company_name:"Teleflex Inc.",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Laparoscopic instruments, surgical access devices, retractors, vessel loops",fda_approved:true,premium_link_active:false,website_url:"https://www.teleflex.com"},
+  {company_name:"Medtronic plc",hq_country:"Ireland / USA",main_category:"Surgical Instruments",key_products:"Electrosurgical forceps, laparoscopic stapling instruments, neurosurgical tools",fda_approved:true,premium_link_active:true,website_url:"https://www.medtronic.com"},
+  {company_name:"Smith & Nephew plc",hq_country:"United Kingdom",main_category:"Surgical Instruments",key_products:"Arthroscopic instruments, orthopedic power tools, trauma instrument sets",fda_approved:true,premium_link_active:false,website_url:"https://www.smith-nephew.com"},
+  {company_name:"Zimmer Biomet Holdings",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Orthopedic surgery instrument sets, reamer systems, loaner instrument trays",fda_approved:true,premium_link_active:false,website_url:"https://www.zimmerbiomet.com"},
+  {company_name:"ConMed Corporation",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Electrosurgical instruments, laparoscopic instruments, arthroscopic shaver systems",fda_approved:true,premium_link_active:false,website_url:"https://www.conmed.com"},
+  {company_name:"Jarit (Integra LifeSciences)",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Premium forceps, clamps, needle holders, retractors, Mayo and Metzenbaum scissors",fda_approved:true,premium_link_active:false,website_url:"https://www.integralife.com/jarit"},
+  {company_name:"Lawton GmbH & Co. KG",hq_country:"Germany",main_category:"Surgical Instruments",key_products:"Microsurgical instruments, neurosurgical instruments, ophthalmic surgery tools",fda_approved:true,premium_link_active:false,website_url:"https://www.lawton-instruments.com"},
+  {company_name:"Novo Surgical Inc.",hq_country:"USA",main_category:"Surgical Instruments",key_products:"General surgery instruments, German-grade forceps, clamps, scissors, retractors",fda_approved:true,premium_link_active:false,website_url:"https://www.novosurgical.com"},
+  {company_name:"Tetra Medical Supply Corp.",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Custom surgical sets, instrument trays, specialty procedure packs, OR kits",fda_approved:true,premium_link_active:false,website_url:"https://www.tetramedical.com"},
+  // ── PART 2 · Instrument Care ──────────────────────────────────────────────
+  {company_name:"Biotrol International",hq_country:"France",main_category:"Instrument Care & Consumables",key_products:"Enzymatic instrument cleaners, surface disinfectants, pre-soaking tablets",fda_approved:false,premium_link_active:false,website_url:"https://www.biotrol.com"},
+  {company_name:"Getinge (Lancer brand)",hq_country:"Sweden",main_category:"Instrument Care & Consumables",key_products:"Lancer enzymatic detergents, washer chemistry, biological and chemical indicators",fda_approved:true,premium_link_active:false,website_url:"https://www.getinge.com/consumables"},
+  {company_name:"Healthmark Industries",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Instrument brushes, test packs, protective tip covers, instrument inspection accessories",fda_approved:true,premium_link_active:false,website_url:"https://www.hmark.com"},
+  {company_name:"Gke GmbH",hq_country:"Germany",main_category:"Instrument Care & Consumables",key_products:"Chemical indicators, biological indicators, process challenge devices for steam and EO",fda_approved:true,premium_link_active:false,website_url:"https://www.gke-online.de"},
+  {company_name:"Terragene SA",hq_country:"Argentina",main_category:"Instrument Care & Consumables",key_products:"Biological indicators (Bionova), chemical integrators, rapid readout BI systems",fda_approved:true,premium_link_active:false,website_url:"https://www.terragene.com.ar"},
+  {company_name:"Mesa Labs (Raven Biological)",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Biological indicators, chemical indicators, rapid readout systems for steam and EO",fda_approved:true,premium_link_active:false,website_url:"https://www.mesalabs.com"},
+  // ── PART 2 · Sterile Packaging ────────────────────────────────────────────
+  {company_name:"Stericlin (Cantel / Steris)",hq_country:"Germany",main_category:"Sterile Packaging & Containers",key_products:"Sterilization pouches, reels, non-woven wraps, SMS wrapping material",fda_approved:true,premium_link_active:false,website_url:"https://www.stericlin.de"},
+  {company_name:"Fortex Medical",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Sterilization reels, heat-seal pouches, self-seal bags, instrument protection products",fda_approved:true,premium_link_active:false,website_url:"https://www.fortexmedical.com"},
+  {company_name:"Surgipak (Ahlstrom)",hq_country:"USA / Finland",main_category:"Sterile Packaging & Containers",key_products:"Medical-grade non-woven sterilization wrap, SMS wraps, crepe wrap",fda_approved:true,premium_link_active:false,website_url:"https://www.ahlstrom.com/medical"},
+  {company_name:"KenGuard (IST)",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Rigid sterilization containers, filter retention systems, instrument protection trays",fda_approved:true,premium_link_active:false,website_url:"https://www.kenguard.com"},
+  {company_name:"Sterilis Solutions",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"On-site medical waste sterilization systems, point-of-care sharps processing",fda_approved:true,premium_link_active:true,website_url:"https://www.sterilissolutions.com"},
+  // ── PART 3 · Capital Equipment ────────────────────────────────────────────
+  {company_name:"Euronda S.p.A.",hq_country:"Italy",main_category:"Capital Equipment",key_products:"E9 Next autoclaves, bench-top steam sterilizers, sealing machines, traceability systems",fda_approved:false,premium_link_active:false,website_url:"https://www.euronda.com"},
+  {company_name:"Biobase Group",hq_country:"China",main_category:"Capital Equipment",key_products:"Vertical and horizontal autoclaves, bench-top steam sterilizers, laboratory washers",fda_approved:false,premium_link_active:false,website_url:"https://www.biobase-china.com"},
+  {company_name:"Astell Scientific",hq_country:"United Kingdom",main_category:"Capital Equipment",key_products:"Front and top-loading autoclaves, laboratory steam sterilizers, custom CSSD systems",fda_approved:false,premium_link_active:false,website_url:"https://www.astell.com"},
+  {company_name:"Eschmann Equipment",hq_country:"United Kingdom",main_category:"Capital Equipment",key_products:"Little Sister bench-top autoclaves, washer-disinfectors for dental and surgical use",fda_approved:false,premium_link_active:false,website_url:"https://www.eschmann.co.uk"},
+  {company_name:"Hanshin Medical Co.",hq_country:"South Korea",main_category:"Capital Equipment",key_products:"Plasma sterilizers, low-temperature H2O2 sterilization systems, steam autoclaves",fda_approved:true,premium_link_active:false,website_url:"https://www.hanshinmedical.com"},
+  {company_name:"Midmark Corporation",hq_country:"USA",main_category:"Capital Equipment",key_products:"M9 and M11 ultraclave autoclaves, statim cassette sterilizers for office-based practice",fda_approved:true,premium_link_active:false,website_url:"https://www.midmark.com"},
+  {company_name:"Smeg Instruments",hq_country:"Italy",main_category:"Capital Equipment",key_products:"Washer-disinfectors for surgical instruments, endoscope washers, thermal disinfectors",fda_approved:false,premium_link_active:false,website_url:"https://www.smeginstruments.com"},
+  // ── PART 3 · Surgical Instruments ────────────────────────────────────────
+  {company_name:"Arthrex Inc.",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Arthroscopic instruments, orthopedic implant sets, minimally invasive surgery tools",fda_approved:true,premium_link_active:false,website_url:"https://www.arthrex.com"},
+  {company_name:"Mizuho OSI",hq_country:"USA / Japan",main_category:"Surgical Instruments",key_products:"Surgical positioning systems, retractor systems, spinal surgery instrument sets",fda_approved:true,premium_link_active:false,website_url:"https://www.mizuhosi.com"},
+  {company_name:"Pendiq GmbH",hq_country:"Germany",main_category:"Surgical Instruments",key_products:"Precision microsurgical instruments, ophthalmic forceps, iris scissors, cannulas",fda_approved:false,premium_link_active:false,website_url:"https://www.pendiq.com"},
+  {company_name:"Globus Medical Inc.",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Spine surgery instrument systems, retractors, neuro instrument sets, robotic tools",fda_approved:true,premium_link_active:false,website_url:"https://www.globusmedical.com"},
+  {company_name:"Surgical Holdings",hq_country:"United Kingdom",main_category:"Surgical Instruments",key_products:"General and specialist surgical instruments, bespoke instrument sets, repair services",fda_approved:false,premium_link_active:false,website_url:"https://www.surgicalholdings.co.uk"},
+  {company_name:"Mopec Inc.",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Pathology and autopsy instruments, dissection sets, tissue processing tools",fda_approved:true,premium_link_active:false,website_url:"https://www.mopec.com"},
+  {company_name:"Wexler Surgical",hq_country:"USA",main_category:"Surgical Instruments",key_products:"Cardiovascular surgery instruments, thoracic retractors, vascular clamps, valve instruments",fda_approved:true,premium_link_active:false,website_url:"https://www.wexlersurgical.com"},
+  // ── PART 3 · Instrument Care ──────────────────────────────────────────────
+  {company_name:"Micro-Scientific Industries",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Klenzyme enzymatic detergents, instrument lubricants, surface disinfectant wipes",fda_approved:true,premium_link_active:false,website_url:"https://www.micro-scientific.com"},
+  {company_name:"Steris (Prolystica brand)",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Prolystica ultra-concentrate detergents, enzymatic presoak, neutral detergents for WD",fda_approved:true,premium_link_active:false,website_url:"https://www.steris.com/prolystica"},
+  {company_name:"Hu-Friedy (IMS Cleaning Line)",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"IMS instrument management cassettes, enzymatic cleaners, instrument inspection loops",fda_approved:true,premium_link_active:false,website_url:"https://www.hu-friedy.com/ims"},
+  {company_name:"Cantel Medical (Endoscopy Care)",hq_country:"USA",main_category:"Instrument Care & Consumables",key_products:"Endoscope cleaning brushes, channel flushing aids, enzymatic detergents for flexible scopes",fda_approved:true,premium_link_active:false,website_url:"https://www.medivators.com/endoscopy-consumables"},
+  {company_name:"Nanosonics Ltd.",hq_country:"Australia",main_category:"Instrument Care & Consumables",key_products:"Trophon EPR ultrasound probe disinfection system, trophon2, probe disinfection consumables",fda_approved:true,premium_link_active:true,website_url:"https://www.nanosonics.com.au"},
+  {company_name:"Dentsply Sirona (Infection Control)",hq_country:"USA / Germany",main_category:"Instrument Care & Consumables",key_products:"Surface disinfectants, instrument presoak solutions, barrier protection consumables",fda_approved:true,premium_link_active:false,website_url:"https://www.dentsplysirona.com/infection-control"},
+  {company_name:"Alkapharm (Pharmax Ltd.)",hq_country:"United Kingdom",main_category:"Instrument Care & Consumables",key_products:"Enzymatic instrument detergents, endoscope cleaning agents, disinfection chemistry",fda_approved:false,premium_link_active:false,website_url:"https://www.alkapharm.co.uk"},
+  // ── PART 3 · Sterile Packaging ────────────────────────────────────────────
+  {company_name:"Wipak Group",hq_country:"Finland",main_category:"Sterile Packaging & Containers",key_products:"Medical-grade sterilization pouches, Tyvek lidding films, flexible barrier packaging",fda_approved:true,premium_link_active:false,website_url:"https://www.wipak.com/medical"},
+  {company_name:"DuPont (Tyvek Medical)",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Tyvek 1073B and 1059B medical packaging material, surgical gown fabric, sterile barrier systems",fda_approved:true,premium_link_active:true,website_url:"https://www.dupont.com/tyvek-medical"},
+  {company_name:"Oliver Healthcare Packaging",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Custom sterile packaging, Tyvek pouches, lidding films, medical thermoforms",fda_approved:true,premium_link_active:false,website_url:"https://www.oliverhealthcare.com"},
+  {company_name:"Placon Corporation",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Thermoformed sterile trays, custom medical device packaging, blister packaging",fda_approved:true,premium_link_active:false,website_url:"https://www.placon.com/medical"},
+  {company_name:"Amcor plc",hq_country:"Australia / Switzerland",main_category:"Sterile Packaging & Containers",key_products:"Flexible sterile barrier packaging, peelable lidding, medical pouches and thermoforms",fda_approved:true,premium_link_active:false,website_url:"https://www.amcor.com/markets/healthcare"},
+  {company_name:"Dai Nippon Printing (DNP Medical)",hq_country:"Japan",main_category:"Sterile Packaging & Containers",key_products:"Medical packaging films, sterile barrier pouches, Tyvek-compatible laminate packaging",fda_approved:false,premium_link_active:false,website_url:"https://www.dnp.co.jp/eng/business/medical"},
+  {company_name:"Volk Optical (Container Inserts)",hq_country:"USA",main_category:"Sterile Packaging & Containers",key_products:"Ophthalmic instrument containers, silicone protection mats, custom foam inserts for trays",fda_approved:true,premium_link_active:false,website_url:"https://www.volk.com"},
+];
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+(function buildCategories() {
+  const cats = [...new Set(COMPANIES.map(c => c.main_category))].sort();
+  const sel  = document.getElementById("categoryFilter");
+  cats.forEach(cat => {
+    const opt = document.createElement("option");
+    opt.value = cat; opt.textContent = cat;
+    sel.appendChild(opt);
+  });
+})();
+
+document.getElementById("searchInput").addEventListener("input",    renderTable);
+document.getElementById("categoryFilter").addEventListener("change", renderTable);
+document.getElementById("fdaFilter").addEventListener("change",     renderTable);
+renderTable();
+
+// ─── FILTER ───────────────────────────────────────────────────────────────────
+function getFiltered() {
+  const q   = document.getElementById("searchInput").value.trim().toLowerCase();
+  const cat = document.getElementById("categoryFilter").value;
+  const fda = document.getElementById("fdaFilter").checked;
+  return COMPANIES.filter(c => {
+    if (q && !(c.company_name + " " + c.key_products + " " + c.hq_country + " " + c.main_category).toLowerCase().includes(q)) return false;
+    if (cat && c.main_category !== cat) return false;
+    if (fda && !c.fda_approved) return false;
+    return true;
+  });
+}
+
+// ─── RENDER ───────────────────────────────────────────────────────────────────
+function renderTable() {
+  const results = getFiltered();
+  const tbody   = document.getElementById("tableBody");
+  document.getElementById("resultCount").textContent = `${results.length} of ${COMPANIES.length}`;
+
+  if (!results.length) {
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="7">No companies match the current filters.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = results.map((c, i) => `
+    <tr>
+      <td><span style="font-family:var(--mono);font-size:11px;color:var(--pale)">${String(i+1).padStart(2,'0')}</span></td>
+      <td>
+        <div class="td-company">${esc(c.company_name)}</div>
+      </td>
+      <td><div class="td-country">${esc(c.hq_country)}</div></td>
+      <td><span class="td-category">${esc(c.main_category)}</span></td>
+      <td><div class="td-products">${esc(c.key_products)}</div></td>
+      <td>${c.fda_approved ? `<span class="td-fda-yes">✓ FDA</span>` : `<span class="td-fda-no">—</span>`}</td>
+      <td>
+        ${c.premium_link_active
+          ? `<a class="btn-visit" href="${esc(c.website_url)}" target="_blank" rel="noopener">
+               Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+             </a>`
+          : `<button class="btn-premium" onclick="openModal()">
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+               Premium
+             </button>`
+        }
+      </td>
+    </tr>`).join("");
+}
+
+// ─── HELPERS ──────────────────────────────────────────────────────────────────
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function resetFilters(){ document.getElementById("searchInput").value=""; document.getElementById("categoryFilter").value=""; document.getElementById("fdaFilter").checked=false; renderTable(); }
+function openModal(){ document.getElementById("premiumModal").classList.add("open"); }
+function closeModal(){ document.getElementById("premiumModal").classList.remove("open"); }
+document.getElementById("premiumModal").addEventListener("click", function(e){ if(e.target===this) closeModal(); });
+document.addEventListener("keydown", e => { if(e.key==="Escape") closeModal(); });
+</script>
+</body>
+</html>

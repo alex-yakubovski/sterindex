@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if pagination.current == 1 %}SterIndex — Sterile Technology Intelligence{% else %}SterIndex — Page {{ pagination.current }}{% endif %}</title>
+<meta name="description" content="Latest news and research in surgical sterilization, endoscopy reprocessing, and medical device decontamination.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+{% if pagination.has_prev %}<link rel="prev" href="{{ pagination.prev_file }}">{% endif %}
+{% if pagination.has_next %}<link rel="next" href="{{ pagination.next_file }}">{% endif %}
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0c1410; --ink2:#1e3028; --mid:#3a5a48; --sub:#6b8c7a;
+  --pale:#a8c4b4; --rim:#d4e4db; --bg:#f0f5f2; --paper:#f8faf9;
+  --white:#ffffff; --green:#1a7a45; --green2:#2ea65c; --green-pale:#e4f3eb;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --max:1100px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+
+/* ── Masthead ── */
+.masthead{background:var(--ink);color:var(--paper);padding:0 2rem;border-bottom:3px solid var(--green);}
+.masthead-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:2rem 0 1.5rem;gap:1rem;}
+.masthead-left{font-family:var(--mono);font-size:11px;color:var(--pale);letter-spacing:.08em;}
+.masthead-left span{display:block;margin-bottom:4px;}
+.logo-block{text-align:center;}
+.logo{font-family:var(--cond);font-size:clamp(2.8rem,6vw,4.8rem);font-weight:700;letter-spacing:-.01em;color:var(--white);line-height:1;text-transform:uppercase;text-decoration:none;display:inline-block;}
+.logo em{color:var(--green2);font-style:normal;}
+.logo-tagline{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--sub);margin-top:6px;}
+.masthead-right{font-family:var(--mono);font-size:11px;color:var(--pale);text-align:right;letter-spacing:.05em;line-height:1.7;}
+.masthead-right .count{font-family:var(--cond);font-size:2.2rem;font-weight:700;color:var(--green2);display:block;line-height:1;}
+
+/* ── Nav strip ── */
+.nav-strip{background:var(--ink2);padding:.6rem 2rem;border-bottom:1px solid #2a4035;}
+.nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.nav-strip a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pale);text-decoration:none;transition:color .15s;}
+.nav-strip a:hover{color:var(--green2);}
+.nav-dot{color:#2a4035;}
+.nav-built{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--sub);}
+
+/* ── Main ── */
+main{max-width:var(--max);margin:0 auto;padding:2.5rem 2rem 3rem;width:100%;flex:1;}
+.section-head{display:flex;align-items:baseline;gap:1rem;border-bottom:2px solid var(--ink);padding-bottom:.6rem;margin-bottom:2rem;flex-wrap:wrap;}
+.section-head h2{font-family:var(--cond);font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);}
+.section-head-right{margin-left:auto;display:flex;align-items:center;gap:1rem;}
+.section-range{font-family:var(--mono);font-size:11px;color:var(--sub);}
+
+/* ── Article list ── */
+.article-list{display:flex;flex-direction:column;}
+.article-row{display:grid;grid-template-columns:52px 1fr auto;gap:0 1.5rem;align-items:start;padding:1.1rem 0;border-bottom:1px solid var(--rim);text-decoration:none;color:inherit;transition:background .15s;position:relative;}
+.article-row::before{content:'';position:absolute;left:-2rem;right:-2rem;top:0;bottom:0;background:var(--green-pale);opacity:0;transition:opacity .15s;pointer-events:none;}
+.article-row:hover::before{opacity:1;}
+.article-row:hover .row-num{color:var(--green);}
+.article-row:hover .row-title{color:var(--green);}
+.row-num{font-family:var(--cond);font-size:1.6rem;font-weight:600;color:var(--rim);line-height:1.1;padding-top:.15rem;position:relative;z-index:1;transition:color .15s;text-align:right;letter-spacing:-.02em;}
+.row-body{position:relative;z-index:1;}
+.row-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;line-height:1.3;color:var(--ink);margin-bottom:.3rem;transition:color .15s;}
+.row-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.row-source{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:2px 8px;border-radius:2px;}
+.row-date{font-family:var(--mono);font-size:11px;color:var(--sub);}
+.row-arrow{font-family:var(--mono);font-size:18px;color:var(--pale);position:relative;z-index:1;padding-top:.1rem;transition:color .15s, transform .15s;}
+.article-row:hover .row-arrow{color:var(--green);transform:translateX(4px);}
+
+/* ── Pagination ── */
+.pagination-wrap{margin-top:3rem;padding-top:2rem;border-top:2px solid var(--ink);}
+.pagination-label{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--sub);margin-bottom:1rem;}
+.pagination{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;}
+.pg-arrow{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;display:inline-flex;align-items:center;gap:5px;padding:8px 16px;border-radius:3px;text-decoration:none;border:1px solid var(--rim);color:var(--mid);transition:all .15s;white-space:nowrap;}
+.pg-arrow:hover{border-color:var(--green);color:var(--green);background:var(--green-pale);}
+.pg-arrow.disabled{opacity:.3;pointer-events:none;cursor:default;}
+.pg-divider{color:var(--rim);font-size:12px;padding:0 4px;}
+.pg-nums{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;}
+.pg-num{font-family:var(--mono);font-size:12px;font-weight:500;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:3px;text-decoration:none;border:1px solid var(--rim);color:var(--mid);transition:all .15s;}
+.pg-num:hover{border-color:var(--green);color:var(--green);background:var(--green-pale);}
+.pg-num.active{background:var(--green);border-color:var(--green);color:var(--white);font-weight:600;cursor:default;pointer-events:none;}
+.pg-ellipsis{font-family:var(--mono);font-size:13px;color:var(--pale);padding:0 4px;}
+.pagination-info{margin-top:1rem;font-family:var(--mono);font-size:11px;color:var(--sub);}
+
+/* ── Footer ── */
+footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;font-family:var(--mono);font-size:11px;color:var(--sub);letter-spacing:.05em;}
+.footer-bottom{max-width:var(--max);margin:0 auto;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;}
+.footer-copy{color:var(--sub);}
+.footer-copy strong{color:var(--pale);}
+.footer-links{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+.footer-links a{color:var(--sub);text-decoration:none;transition:color .15s;letter-spacing:.06em;}
+.footer-links a:hover{color:var(--green2);}
+.footer-sep{color:#2a4035;}
+
+@media(max-width:700px){
+  .masthead-inner{grid-template-columns:1fr;text-align:center;}
+  .masthead-left,.masthead-right{text-align:center;}
+  .masthead-right .count{font-size:1.4rem;display:inline;}
+  main{padding:1.5rem 1rem 2rem;}
+  .article-row{grid-template-columns:38px 1fr 18px;gap:0 .75rem;}
+  .row-num{font-size:1.2rem;}
+  .row-title{font-size:1.05rem;}
+  .article-row::before{left:-.5rem;right:-.5rem;}
+  .pg-arrow span{display:none;}
+  .pg-num{width:32px;height:32px;font-size:11px;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+  .footer-links{gap:.75rem;}
+  .footer-legal{padding:1.5rem 1rem;}
+  .footer-bottom{padding:1rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-left">
+        <span>Sterile Technology</span>
+        <span>Intelligence Digest</span>
+        <span>Medical Edition</span>
+      </div>
+      <div class="logo-block">
+        <a class="logo" href="index.html">Ster<em>Index</em></a>
+        <div class="logo-tagline">// Surgical · Endoscopy · Sterilization</div>
+      </div>
+      <div class="masthead-right">
+        <span class="count">{{ total_all }}</span>
+        articles indexed<br>
+        {{ pagination.total_pages }} page{% if pagination.total_pages != 1 %}s{% endif %} · updated {{ built_at }}
+      </div>
+    </div>
+  </div>
+  <div class="nav-strip">
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <span class="nav-dot">·</span>
+      <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener">PubMed</a>
+      <span class="nav-dot">·</span>
+      <a href="https://www.fda.gov" target="_blank" rel="noopener">FDA</a>
+      <span class="nav-dot">·</span>
+      <a href="https://www.cdc.gov" target="_blank" rel="noopener">CDC</a>
+      <span class="nav-dot">·</span>
+      <a href="https://www.who.int" target="_blank" rel="noopener">WHO</a>
+      <span class="nav-dot">·</span>
+      <a href="producers.html">Producers</a>
+      <span class="nav-built">Built {{ built_at }}</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="section-head">
+    <h2>{% if pagination.current == 1 %}Latest Articles{% else %}Articles · Page {{ pagination.current }}{% endif %}</h2>
+    <div class="section-head-right">
+      <span class="section-range">#{{ start_num }}–{{ start_num + articles|length - 1 }} of {{ total_all }}</span>
+    </div>
+  </div>
+
+  <div class="article-list">
+    {% for art in articles %}
+    <a class="article-row" href="articles/{{ art.slug }}.html">
+      <div class="row-num">{{ "%02d"|format(start_num + loop.index0) }}</div>
+      <div class="row-body">
+        <div class="row-title">{{ art.title }}</div>
+        <div class="row-meta">
+          <span class="row-source">{{ art.source }}</span>
+          {% if art.published %}<span class="row-date">{{ art.published }}</span>{% endif %}
+        </div>
+      </div>
+      <div class="row-arrow">→</div>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% if pagination.total_pages > 1 %}
+  <div class="pagination-wrap">
+    <div class="pagination-label">Pages</div>
+    <div class="pagination">
+
+      {% if pagination.has_prev %}
+      <a class="pg-arrow" href="{{ pagination.prev_file }}">← <span>Newer</span></a>
+      {% else %}
+      <span class="pg-arrow disabled">← <span>Newer</span></span>
+      {% endif %}
+
+      <span class="pg-divider">|</span>
+
+      <div class="pg-nums">
+        {% if pagination.total_pages <= 7 %}
+          {% for p in pagination.pages %}
+            <a class="pg-num{% if p.active %} active{% endif %}" href="{{ p.file }}">{{ p.num }}</a>
+          {% endfor %}
+        {% else %}
+          <a class="pg-num{% if pagination.current == 1 %} active{% endif %}" href="index.html">1</a>
+          {% if pagination.current > 4 %}<span class="pg-ellipsis">…</span>{% endif %}
+          {% for p in pagination.pages %}
+            {% if p.num != 1 and p.num != pagination.total_pages %}
+              {% if p.num >= pagination.current - 2 and p.num <= pagination.current + 2 %}
+                <a class="pg-num{% if p.active %} active{% endif %}" href="{{ p.file }}">{{ p.num }}</a>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% if pagination.current < pagination.total_pages - 3 %}<span class="pg-ellipsis">…</span>{% endif %}
+          <a class="pg-num{% if pagination.current == pagination.total_pages %} active{% endif %}" href="{{ pagination.pages[-1].file }}">{{ pagination.total_pages }}</a>
+        {% endif %}
+      </div>
+
+      <span class="pg-divider">|</span>
+
+      {% if pagination.has_next %}
+      <a class="pg-arrow" href="{{ pagination.next_file }}"><span>Older</span> →</a>
+      {% else %}
+      <span class="pg-arrow disabled"><span>Older</span> →</span>
+      {% endif %}
+
+    </div>
+    <div class="pagination-info">
+      Page {{ pagination.current }} of {{ pagination.total_pages }}
+      &nbsp;·&nbsp;
+      Articles {{ start_num }}–{{ start_num + articles|length - 1 }} of {{ total_all }} total
+    </div>
+  </div>
+  {% endif %}
+
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">
+      &copy; {{ built_at.split(' ')[-1] }} <strong>SterIndex</strong> &nbsp;·&nbsp; All rights reserved
+    </div>
+    <div class="footer-links">
+      <a href="YOUR_ABOUT_URL">About Us</a>
+      <span class="footer-sep">·</span>
+      <a href="YOUR_PRIVACY_URL">Privacy Policy</a>
+      <span class="footer-sep">·</span>
+      <a href="YOUR_CONTACT_URL">Contact</a>
+      <span class="footer-sep">·</span>
+      <a href="producers.html">Producers</a>
+      <span class="footer-sep">·</span>
+      <a href="legal.html">Legal Notice</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
