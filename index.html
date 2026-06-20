@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% if pagination.current == 1 %}SterIndex — Sterile Technology Intelligence{% else %}SterIndex — Page {{ pagination.current }}{% endif %}</title>
+<title>SterIndex — Sterile Technology Intelligence</title>
 <meta name="description" content="Latest news and research in surgical sterilization, endoscopy reprocessing, and medical device decontamination.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-{% if pagination.has_prev %}<link rel="prev" href="{{ pagination.prev_file }}">{% endif %}
-{% if pagination.has_next %}<link rel="next" href="{{ pagination.next_file }}">{% endif %}
+
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -125,9 +125,9 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
         <div class="logo-tagline">// Surgical · Endoscopy · Sterilization</div>
       </div>
       <div class="masthead-right">
-        <span class="count">{{ total_all }}</span>
+        <span class="count">7</span>
         articles indexed<br>
-        {{ pagination.total_pages }} page{% if pagination.total_pages != 1 %}s{% endif %} · updated {{ built_at }}
+        1 page · updated June 20, 2026 at 00:34 UTC
       </div>
     </div>
   </div>
@@ -144,91 +144,117 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
       <a href="https://www.who.int" target="_blank" rel="noopener">WHO</a>
       <span class="nav-dot">·</span>
       <a href="producers.html">Producers</a>
-      <span class="nav-built">Built {{ built_at }}</span>
+      <span class="nav-dot">·</span>
+      <a href="blog.html">Blog</a>
+      <span class="nav-built">Built June 20, 2026 at 00:34 UTC</span>
     </div>
   </div>
 </header>
 
 <main>
   <div class="section-head">
-    <h2>{% if pagination.current == 1 %}Latest Articles{% else %}Articles · Page {{ pagination.current }}{% endif %}</h2>
+    <h2>Latest Articles</h2>
     <div class="section-head-right">
-      <span class="section-range">#{{ start_num }}–{{ start_num + articles|length - 1 }} of {{ total_all }}</span>
+      <span class="section-range">#1–7 of 7</span>
     </div>
   </div>
 
   <div class="article-list">
-    {% for art in articles %}
-    <a class="article-row" href="articles/{{ art.slug }}.html">
-      <div class="row-num">{{ "%02d"|format(start_num + loop.index0) }}</div>
+    
+    <a class="article-row" href="articles/aseptic-practices-in-non-surgical-endodontics-a-survey-across-3-practitioner-gro.html">
+      <div class="row-num">01</div>
       <div class="row-body">
-        <div class="row-title">{{ art.title }}</div>
+        <div class="row-title">Aseptic Practices in Non-Surgical Endodontics: A Survey Across 3 Practitioner Groups.</div>
         <div class="row-meta">
-          <span class="row-source">{{ art.source }}</span>
-          {% if art.published %}<span class="row-date">{{ art.published }}</span>{% endif %}
+          <span class="row-source">PubMed</span>
+          <span class="row-date">May 22, 2026</span>
         </div>
       </div>
       <div class="row-arrow">→</div>
     </a>
-    {% endfor %}
-  </div>
-
-  {% if pagination.total_pages > 1 %}
-  <div class="pagination-wrap">
-    <div class="pagination-label">Pages</div>
-    <div class="pagination">
-
-      {% if pagination.has_prev %}
-      <a class="pg-arrow" href="{{ pagination.prev_file }}">← <span>Newer</span></a>
-      {% else %}
-      <span class="pg-arrow disabled">← <span>Newer</span></span>
-      {% endif %}
-
-      <span class="pg-divider">|</span>
-
-      <div class="pg-nums">
-        {% if pagination.total_pages <= 7 %}
-          {% for p in pagination.pages %}
-            <a class="pg-num{% if p.active %} active{% endif %}" href="{{ p.file }}">{{ p.num }}</a>
-          {% endfor %}
-        {% else %}
-          <a class="pg-num{% if pagination.current == 1 %} active{% endif %}" href="index.html">1</a>
-          {% if pagination.current > 4 %}<span class="pg-ellipsis">…</span>{% endif %}
-          {% for p in pagination.pages %}
-            {% if p.num != 1 and p.num != pagination.total_pages %}
-              {% if p.num >= pagination.current - 2 and p.num <= pagination.current + 2 %}
-                <a class="pg-num{% if p.active %} active{% endif %}" href="{{ p.file }}">{{ p.num }}</a>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-          {% if pagination.current < pagination.total_pages - 3 %}<span class="pg-ellipsis">…</span>{% endif %}
-          <a class="pg-num{% if pagination.current == pagination.total_pages %} active{% endif %}" href="{{ pagination.pages[-1].file }}">{{ pagination.total_pages }}</a>
-        {% endif %}
+    
+    <a class="article-row" href="articles/improving-sterile-processing-operational-efficiency-through-organizational-chang.html">
+      <div class="row-num">02</div>
+      <div class="row-body">
+        <div class="row-title">Improving Sterile Processing Operational Efficiency through Organizational Change.</div>
+        <div class="row-meta">
+          <span class="row-source">PubMed</span>
+          <span class="row-date">2026</span>
+        </div>
       </div>
-
-      <span class="pg-divider">|</span>
-
-      {% if pagination.has_next %}
-      <a class="pg-arrow" href="{{ pagination.next_file }}"><span>Older</span> →</a>
-      {% else %}
-      <span class="pg-arrow disabled"><span>Older</span> →</span>
-      {% endif %}
-
-    </div>
-    <div class="pagination-info">
-      Page {{ pagination.current }} of {{ pagination.total_pages }}
-      &nbsp;·&nbsp;
-      Articles {{ start_num }}–{{ start_num + articles|length - 1 }} of {{ total_all }} total
-    </div>
+      <div class="row-arrow">→</div>
+    </a>
+    
+    <a class="article-row" href="articles/nara-organics-recalls-all-lots-of-nara-infant-formula-because-of-possible-health.html">
+      <div class="row-num">03</div>
+      <div class="row-body">
+        <div class="row-title">NARA ORGANICS RECALLS ALL LOTS OF NARA INFANT FORMULA BECAUSE OF POSSIBLE HEALTH RISK</div>
+        <div class="row-meta">
+          <span class="row-source">FDA Recalls (Devices)</span>
+          <span class="row-date">Sat, 13 Jun 2026 00:</span>
+        </div>
+      </div>
+      <div class="row-arrow">→</div>
+    </a>
+    
+    <a class="article-row" href="articles/beekeepers-naturals-issues-voluntary-nationwide-recall-of-beekeepers-naturals-sa.html">
+      <div class="row-num">04</div>
+      <div class="row-body">
+        <div class="row-title">Beekeeper’s Naturals Issues Voluntary Nationwide Recall of Beekeeper’s Naturals Saline Nasal Spray Sold Through Amazon Due to Microbial Contamination</div>
+        <div class="row-meta">
+          <span class="row-source">FDA Recalls (Devices)</span>
+          <span class="row-date">Thu, 11 Jun 2026 12:</span>
+        </div>
+      </div>
+      <div class="row-arrow">→</div>
+    </a>
+    
+    <a class="article-row" href="articles/bd-issues-nationwide-recall-for-specific-lots-of-chloraprep-clear-single-sterile.html">
+      <div class="row-num">05</div>
+      <div class="row-body">
+        <div class="row-title">BD Issues Nationwide Recall for Specific Lots of ChloraPrep™ Clear Single Sterile 1 mL and FREPP™ Clear 1.5 mL Applicators Due to Microbial Contamination</div>
+        <div class="row-meta">
+          <span class="row-source">FDA Recalls (Devices)</span>
+          <span class="row-date">Sat, 06 Jun 2026 11:</span>
+        </div>
+      </div>
+      <div class="row-arrow">→</div>
+    </a>
+    
+    <a class="article-row" href="articles/haleon-issues-voluntary-nationwide-recall-of-gas-x-extra-strength-softgels-125mg.html">
+      <div class="row-num">06</div>
+      <div class="row-body">
+        <div class="row-title">Haleon Issues Voluntary Nationwide Recall of Gas-X Extra Strength Softgels 125mg, 120 ct. and 72 ct.</div>
+        <div class="row-meta">
+          <span class="row-source">FDA Recalls (Devices)</span>
+          <span class="row-date">Thu, 04 Jun 2026 15:</span>
+        </div>
+      </div>
+      <div class="row-arrow">→</div>
+    </a>
+    
+    <a class="article-row" href="articles/target-recalls-up-up-fragrance-free-and-fresh-cucumber-scented-baby-wipes-due-to.html">
+      <div class="row-num">07</div>
+      <div class="row-body">
+        <div class="row-title">Target Recalls Up &amp; Up Fragrance Free and Fresh Cucumber Scented Baby Wipes Due to Potential Microbial Contamination</div>
+        <div class="row-meta">
+          <span class="row-source">FDA Recalls (Devices)</span>
+          <span class="row-date">Thu, 04 Jun 2026 13:</span>
+        </div>
+      </div>
+      <div class="row-arrow">→</div>
+    </a>
+    
   </div>
-  {% endif %}
+
+  
 
 </main>
 
 <footer>
   <div class="footer-bottom">
     <div class="footer-copy">
-      &copy; {{ built_at.split(' ')[-1] }} <strong>SterIndex</strong> &nbsp;·&nbsp; All rights reserved
+      &copy; UTC <strong>SterIndex</strong> &nbsp;·&nbsp; All rights reserved
     </div>
     <div class="footer-links">
       <a href="about.html">About Us</a>
@@ -238,6 +264,8 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
       <a href="contact.html">Contact</a>
       <span class="footer-sep">·</span>
       <a href="producers.html">Producers</a>
+      <span class="footer-sep">·</span>
+      <a href="blog.html">Blog</a>
       <span class="footer-sep">·</span>
       <a href="legal.html">Legal Notice</a>
     </div>

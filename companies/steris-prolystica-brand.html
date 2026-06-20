@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steris (Prolystica brand) — SterIndex Vendor Profile</title>
+<meta name="description" content="Steris (Prolystica brand) — sterile technology vendor profile on SterIndex. Compliance status, product categories, and contact information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── Tokens ── */
+:root{
+  --ink:       #0a1410;
+  --ink2:      #1a2e24;
+  --ink3:      #243c2e;
+  --mid:       #3a5a48;
+  --sub:       #6b8c7a;
+  --pale:      #a8c4b4;
+  --rim:       #d0e0d8;
+  --rim2:      #e4ede8;
+  --bg:        #f0f4f1;
+  --paper:     #f8faf9;
+  --white:     #ffffff;
+  --green:     #1a7a45;
+  --green2:    #2ea65c;
+  --green-pale:#e4f2eb;
+  --amber:     #b87c00;
+  --amber-bg:  #fdf6e3;
+  --amber-rim: #e8d5a0;
+  --grey:      #8a9e94;
+  --grey-bg:   #f0f4f2;
+  --grey-rim:  #cdd8d2;
+  --red:       #8b2020;
+  --red-bg:    #fdf0f0;
+  --serif:     'Cormorant Garamond', Georgia, serif;
+  --cond:      'Barlow Condensed', sans-serif;
+  --body:      'Barlow', sans-serif;
+  --mono:      'IBM Plex Mono', monospace;
+  --max:       1080px;
+  --radius:    6px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Topbar ── */
+.topbar {
+  background: var(--ink);
+  border-bottom: 3px solid var(--green);
+  padding: .65rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.topbar-logo {
+  font-family: var(--cond);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+}
+.topbar-logo em { color: var(--green2); font-style: normal; }
+.topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.topbar-nav a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--pale);
+  text-decoration: none;
+  transition: color .15s;
+}
+.topbar-nav a:hover { color: var(--green2); }
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  background: var(--ink2);
+  border-bottom: 1px solid var(--ink3);
+  padding: .55rem 2rem;
+}
+.breadcrumb-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--sub);
+}
+.breadcrumb a { color: var(--sub); text-decoration: none; transition: color .15s; }
+.breadcrumb a:hover { color: var(--green2); }
+.breadcrumb-sep { color: var(--ink3); }
+
+/* ── Page wrap ── */
+.page {
+  max-width: var(--max);
+  margin: 2.5rem auto;
+  padding: 0 2rem 4rem;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Section label ── */
+.section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: .85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 2px;
+  background: var(--green);
+  border-radius: 1px;
+}
+
+/* ════════════════════════════════════════════
+   1. HEADER SECTION
+════════════════════════════════════════════ */
+.profile-header {
+  background: var(--ink);
+  border-radius: var(--radius);
+  border: 1px solid var(--ink3);
+  overflow: hidden;
+}
+.profile-header-accent {
+  height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--green2), var(--green));
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+.profile-header-body {
+  padding: 2rem 2.5rem 2.5rem;
+}
+.profile-meta-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.profile-id {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .15em;
+  color: var(--sub);
+  text-transform: uppercase;
+}
+.profile-category-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: var(--ink3);
+  color: var(--pale);
+  border: 1px solid #2a4035;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: rgba(46,166,92,.15);
+  color: var(--green2);
+  border: 1px solid rgba(46,166,92,.3);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+.verified-badge svg { width: 11px; height: 11px; }
+.unverified-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: rgba(184,124,0,.1);
+  border: 1px solid rgba(184,124,0,.25);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.company-name {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  color: #f0f5f2;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin-bottom: 1.25rem;
+}
+.company-hq {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--sub);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.company-hq svg { width: 12px; height: 12px; }
+
+/* Product tags row */
+.tags-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: .6rem;
+}
+.tags-row {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+.tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--pale);
+  background: var(--ink2);
+  border: 1px solid #2a4035;
+  padding: 4px 12px;
+  border-radius: 2px;
+  letter-spacing: .04em;
+}
+.tag-sep {
+  color: var(--ink3);
+  font-size: 14px;
+}
+
+/* Description */
+.company-description {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: #b8cec4;
+  max-width: 720px;
+  border-top: 1px solid var(--ink3);
+  padding-top: 1.5rem;
+}
+
+/* ════════════════════════════════════════════
+   2. COMPLIANCE BLOCK
+════════════════════════════════════════════ */
+.compliance-block {
+  background: var(--paper);
+  border: 1px solid var(--rim);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.compliance-header {
+  background: var(--ink2);
+  padding: .85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.compliance-header-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--pale);
+}
+.compliance-header-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--sub);
+}
+.compliance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.compliance-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--sub);
+  padding: .7rem 1.5rem;
+  text-align: left;
+  background: var(--grey-bg);
+  border-bottom: 1px solid var(--rim);
+  font-weight: 500;
+}
+.compliance-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--rim2);
+  vertical-align: middle;
+}
+.compliance-table tr:last-child td { border-bottom: none; }
+.compliance-table tr:hover td { background: var(--green-pale); }
+
+.col-standard { font-size: 14px; font-weight: 500; color: var(--ink); }
+.col-standard small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--sub);
+  margin-top: 3px;
+  font-weight: 400;
+}
+.col-scope {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--mid);
+}
+.status-pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--amber);
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-rim);
+  padding: 4px 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.status-pending::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+.status-unverified {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--grey);
+  background: var(--grey-bg);
+  border: 1px solid var(--grey-rim);
+  padding: 4px 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.status-unverified::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--grey);
+  flex-shrink: 0;
+}
+.status-no-data {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: .04em;
+}
+
+/* ════════════════════════════════════════════
+   3. CONTACTS & COMMERCIAL BLOCK
+════════════════════════════════════════════ */
+.contacts-block {
+  background: var(--paper);
+  border: 1px solid var(--rim);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.contacts-header {
+  background: var(--ink2);
+  padding: .85rem 1.5rem;
+}
+.contacts-header-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--pale);
+}
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.contact-cell {
+  padding: 1.5rem;
+  border-right: 1px solid var(--rim2);
+  border-bottom: 1px solid var(--rim2);
+}
+.contact-cell:nth-child(3n) { border-right: none; }
+.contact-cell:nth-last-child(-n+3) { border-bottom: none; }
+.contact-cell-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: .6rem;
+}
+.contact-cell-icon {
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
+  display: block;
+}
+.locked-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--grey);
+  background: var(--grey-bg);
+  border: 1px solid var(--grey-rim);
+  border-radius: 3px;
+  padding: 6px 12px;
+  cursor: not-allowed;
+  user-select: none;
+}
+.locked-field svg { width: 11px; height: 11px; opacity: .6; flex-shrink: 0; }
+.disabled-field {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--grey);
+  background: var(--grey-bg);
+  border: 1px dashed var(--grey-rim);
+  border-radius: 3px;
+  padding: 6px 12px;
+  display: inline-block;
+}
+.no-docs {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--grey);
+  font-style: italic;
+}
+
+/* ════════════════════════════════════════════
+   4. CTA BOX
+════════════════════════════════════════════ */
+.cta-box {
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  background: var(--paper);
+  overflow: hidden;
+}
+.cta-box-top {
+  background: linear-gradient(135deg, var(--ink2), var(--ink3));
+  padding: .65rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.cta-box-top-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--green2);
+}
+.cta-box-top-label::before {
+  content: '→ ';
+}
+.cta-body {
+  padding: 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+.cta-text h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: .75rem;
+  line-height: 1.25;
+}
+.cta-text p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mid);
+  max-width: 560px;
+}
+.cta-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin-top: 1rem;
+}
+.cta-benefit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--mid);
+}
+.cta-benefit::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  flex-shrink: 0;
+  min-width: 220px;
+}
+.cta-btn-primary {
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: center;
+  background: var(--green);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.cta-btn-primary:hover { background: var(--green2); }
+.cta-divider {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--pale);
+  letter-spacing: .1em;
+}
+.cta-contact-line {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--sub);
+  text-align: center;
+  line-height: 1.6;
+}
+.cta-contact-line a {
+  color: var(--green);
+  text-decoration: none;
+}
+.cta-contact-line a:hover { color: var(--green2); }
+
+/* ── Footer ── */
+footer {
+  background: var(--ink);
+  border-top: 3px solid var(--green);
+  margin-top: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--sub);
+  letter-spacing: .05em;
+}
+.footer-bottom {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+.footer-copy strong { color: var(--pale); }
+.footer-links { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.footer-links a { color: var(--sub); text-decoration: none; transition: color .15s; }
+.footer-links a:hover { color: var(--green2); }
+.footer-sep { color: #2a4035; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .profile-header-body { padding: 1.5rem 1.25rem 2rem; }
+  .page { padding: 0 1rem 3rem; margin-top: 1.5rem; }
+  .contacts-grid { grid-template-columns: 1fr; }
+  .contact-cell { border-right: none; border-bottom: 1px solid var(--rim2); }
+  .contact-cell:last-child { border-bottom: none; }
+  .cta-body { grid-template-columns: 1fr; }
+  .cta-actions { min-width: unset; }
+  .compliance-table th:nth-child(2),
+  .compliance-table td:nth-child(2) { display: none; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; padding: 1rem; }
+  .footer-links { gap: .75rem; }
+  .topbar { padding: .65rem 1rem; }
+  .breadcrumb { padding: .55rem 1rem; }
+}
+@media (max-width: 480px) {
+  .company-name { font-size: 1.8rem; }
+  .cta-body { padding: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Topbar ── -->
+<div class="topbar">
+  <a class="topbar-logo" href="../index.html">Ster<em>Index</em></a>
+  <div class="topbar-nav">
+    <a href="../producers.html">← Directory</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../legal.html">Legal</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+</div>
+
+<!-- ── Breadcrumb ── -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">SterIndex</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="../producers.html">Producers Directory</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Steris (Prolystica brand)</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ════════════════════════════════════════
+       1. HEADER SECTION
+  ════════════════════════════════════════ -->
+  <section aria-label="Company Profile Header">
+    <div class="section-label">Vendor Profile</div>
+    <div class="profile-header">
+      <div class="profile-header-accent"></div>
+      <div class="profile-header-body">
+
+        <div class="profile-meta-row">
+          <span class="profile-id">SterIndex ID: SI-0081</span>
+          <span class="profile-category-tag">Instrument Care &amp; Consumables</span>
+          <!-- Swap badge depending on verification status -->
+          <span class="verified-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            SterIndex Verified
+          </span>
+          <!-- OR use this for unverified: -->
+          <!-- <span class="unverified-badge">Pending Verification</span> -->
+        </div>
+
+        <h1 class="company-name">Steris (Prolystica brand)</h1>
+
+        <div class="company-hq">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          Headquarters: USA
+        </div>
+
+        <div class="tags-label">Product Categories</div>
+        <div class="tags-row">
+          <!-- Repeat .tag for each product category -->
+          <span class="tag">Prolystica ultra-concentrate detergents</span>
+          <span class="tag-sep">·</span>
+          <span class="tag">enzymatic presoak</span>
+          <span class="tag-sep">·</span>
+          <span class="tag">neutral detergents for WD</span>
+        </div>
+
+        <p class="company-description">
+          Steris (Prolystica brand) is a USA-headquartered manufacturer specialising in instrument care &amp; consumables, holding FDA clearance for US market distribution. The company&#39;s product portfolio includes prolystica ultra-concentrate detergents and related sterile processing solutions for clinical and surgical environments.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       2. COMPLIANCE BLOCK
+  ════════════════════════════════════════ -->
+  <section aria-label="Compliance Status">
+    <div class="section-label">Regulatory &amp; Compliance Data</div>
+    <div class="compliance-block">
+      <div class="compliance-header">
+        <span class="compliance-header-title">Compliance &amp; Certification Status</span>
+        <span class="compliance-header-note">Data sourced from public registries · Last checked: June 20, 2026</span>
+      </div>
+      <table class="compliance-table">
+        <thead>
+          <tr>
+            <th>Standard / Regulation</th>
+            <th>Scope</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-standard">
+              FDA Facility Registration
+              <small>21 CFR Part 807</small>
+            </td>
+            <td class="col-scope">Medical device manufacturer registration</td>
+            <td><span class="status-pending">[ Pending Vendor Verification ]</span></td>
+          </tr>
+          <tr>
+            <td class="col-standard">
+              FDA 510(k) Equipment Clearance
+              <small>Premarket Notification</small>
+            </td>
+            <td class="col-scope">Device-level market clearance for US distribution</td>
+            <td><span class="status-pending">[ Pending Vendor Verification ]</span></td>
+          </tr>
+          <tr>
+            <td class="col-standard">
+              Product Recalls Monitoring (2026)
+              <small>FDA MedWatch / MAUDE Database</small>
+            </td>
+            <td class="col-scope">Active recalls, corrections &amp; removals</td>
+            <td><span class="status-unverified">[ Unverified ]</span></td>
+          </tr>
+          <tr>
+            <td class="col-standard">
+              AAMI ST79 / ST108 Compliance
+              <small>Steam &amp; Low-Temp Sterilization Standards</small>
+            </td>
+            <td class="col-scope">Sterile processing practice standards</td>
+            <td><span class="status-no-data">[ Data not provided ]</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       3. CONTACTS & COMMERCIAL BLOCK
+  ════════════════════════════════════════ -->
+  <section aria-label="Contact and Commercial Information">
+    <div class="section-label">Contact &amp; Commercial Access</div>
+    <div class="contacts-block">
+      <div class="contacts-header">
+        <span class="contacts-header-title">Commercial Information</span>
+      </div>
+      <div class="contacts-grid">
+
+        <div class="contact-cell">
+          <div class="contact-cell-label">Official Website</div>
+          <span class="contact-cell-icon">🔗</span>
+          <div class="locked-field">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+            Locked — Claim profile to unlock
+          </div>
+        </div>
+
+        <div class="contact-cell">
+          <div class="contact-cell-label">Request a Quote</div>
+          <span class="contact-cell-icon">📋</span>
+          <div class="disabled-field">[ Form Disabled ]</div>
+          <p style="font-family:var(--mono);font-size:10px;color:var(--sub);margin-top:.5rem;">
+            Available after vendor claim &amp; verification
+          </p>
+        </div>
+
+        <div class="contact-cell">
+          <div class="contact-cell-label">Product Catalogs (PDF)</div>
+          <span class="contact-cell-icon">📁</span>
+          <p class="no-docs">No documents uploaded by vendor</p>
+          <p style="font-family:var(--mono);font-size:10px;color:var(--sub);margin-top:.5rem;">
+            Claim profile to upload official materials
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       4. B2B CTA BOX
+  ════════════════════════════════════════ -->
+  <section aria-label="Vendor Call to Action">
+    <div class="cta-box">
+      <div class="cta-box-top">
+        <span class="cta-box-top-label">Attention: Steris (Prolystica brand) Marketing &amp; Sales Team</span>
+      </div>
+      <div class="cta-body">
+        <div class="cta-text">
+          <h3>Is this your company? Claim this profile.</h3>
+          <p>
+            SterIndex is a growing B2B intelligence directory reaching sterile processing
+            department managers, infection preventionists, OR charge nurses, and procurement
+            specialists across the US medical market. Claiming your profile unlocks direct
+            commercial access to this audience.
+          </p>
+          <div class="cta-benefits">
+            <span class="cta-benefit">Activate a direct, clickable link to your official website</span>
+            <span class="cta-benefit">Upload official product catalogs and PDF datasheets</span>
+            <span class="cta-benefit">Enable the "Request a Quote" contact form</span>
+            <span class="cta-benefit">Receive <strong>SterIndex Verified Vendor</strong> status &amp; badge</span>
+            <span class="cta-benefit">Populate your compliance and certification data</span>
+          </div>
+        </div>
+        <div class="cta-actions">
+          <a class="cta-btn-primary"
+             href="https://formspree.io/f/mojzpwwg"
+             target="_blank"
+             rel="noopener">
+            Claim This Profile →
+          </a>
+          <div class="cta-divider">— or —</div>
+          <div class="cta-contact-line">
+            Contact our data team directly:<br>
+            <a href="mailto:info@sterindex.com">info@sterindex.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page -->
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">
+      &copy; <span id="yr"></span> <strong>SterIndex</strong>
+      &nbsp;·&nbsp; All rights reserved
+    </div>
+    <div class="footer-links">
+      <a href="../index.html">News</a>
+      <span class="footer-sep">·</span>
+      <a href="../producers.html">Producers</a>
+      <span class="footer-sep">·</span>
+      <a href="../blog.html">Blog</a>
+      <span class="footer-sep">·</span>
+      <a href="../about.html">About Us</a>
+      <span class="footer-sep">·</span>
+      <a href="../privacy.html">Privacy Policy</a>
+      <span class="footer-sep">·</span>
+      <a href="../contact.html">Contact</a>
+      <span class="footer-sep">·</span>
+      <a href="../legal.html">Legal Notice</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

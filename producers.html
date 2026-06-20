@@ -89,6 +89,11 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
 .footer-links a{color:var(--sub);text-decoration:none;transition:color .15s;}
 .footer-links a:hover{color:var(--green2);}
 .footer-sep{color:#2a4035;}
+.td-about{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;background:var(--ink2);color:var(--pale);padding:5px 12px;border-radius:3px;text-decoration:none;border:1px solid #2a4035;transition:all .15s;white-space:nowrap;}
+.td-about:hover{border-color:var(--green);color:var(--green2);}
+.verified-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;background:#d4f0e0;color:#1a5c34;border:1px solid #a8d8be;padding:4px 10px;border-radius:100px;white-space:nowrap;}
+.verified-badge svg{width:11px;height:11px;flex-shrink:0;}
+.pending-badge{font-family:var(--mono);font-size:10px;color:#8aaa98;letter-spacing:.03em;white-space:nowrap;}
 @media(max-width:768px){
   .controls-inner{flex-direction:column;align-items:stretch;}
   .controls-right{margin-left:0;}
@@ -105,6 +110,7 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
   <a class="topbar-logo" href="index.html">Ster<em>Index</em></a>
   <div class="topbar-nav">
     <a href="index.html">← News Index</a>
+    <a href="blog.html">Blog</a>
     <a href="legal.html">Legal</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -147,7 +153,9 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
           <th>Category</th>
           <th>Key Products</th>
           <th>FDA</th>
-          <th>Action</th>
+          <th>About</th>
+          <th>Verified</th>
+          <th>Website</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -183,6 +191,31 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
 
 <script>
 // ─── DATA ────────────────────────────────────────────────────────────────────
+
+// Top 20 industry leaders — SterIndex Verified status
+const VERIFIED_COMPANIES = new Set([
+  "3M Health Care",
+  "Advanced Sterilization Products (ASP)",
+  "Aesculap AG (B. Braun)",
+  "Arthrex Inc.",
+  "Belimed AG",
+  "ConMed Corporation",
+  "DuPont (Tyvek Medical)",
+  "Ecolab Inc.",
+  "Getinge AB",
+  "Integra LifeSciences",
+  "Karl Storz SE & Co. KG",
+  "Medline Industries",
+  "Medtronic plc",
+  "Nanosonics Ltd.",
+  "Olympus Corporation",
+  "STERIS plc",
+  "Smith & Nephew plc",
+  "Stryker Corporation",
+  "Tuttnauer USA",
+  "Zimmer Biomet Holdings"
+]);
+
 const COMPANIES = [
   // ── PART 1 · Capital Equipment ────────────────────────────────────────────
   {company_name:"STERIS plc",hq_country:"USA / Ireland",main_category:"Capital Equipment",key_products:"AMSCO steam sterilizers, V-PRO low-temp sterilizers, washer-disinfectors, sterility assurance",fda_approved:true,premium_link_active:true,website_url:"https://www.steris.com"},
@@ -329,20 +362,33 @@ function renderTable() {
   document.getElementById("resultCount").textContent = `${results.length} of ${COMPANIES.length}`;
 
   if (!results.length) {
-    tbody.innerHTML = `<tr class="empty-row"><td colspan="7">No companies match the current filters.</td></tr>`;
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="9">No companies match the current filters.</td></tr>`;
     return;
   }
 
-  tbody.innerHTML = results.map((c, i) => `
+  tbody.innerHTML = results.map((c, i) => {
+    const slug = c.company_name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+    const isVerified = VERIFIED_COMPANIES.has(c.company_name);
+    return `
     <tr>
       <td><span style="font-family:var(--mono);font-size:11px;color:var(--pale)">${String(i+1).padStart(2,'0')}</span></td>
-      <td>
-        <div class="td-company">${esc(c.company_name)}</div>
-      </td>
+      <td><div class="td-company">${esc(c.company_name)}</div></td>
       <td><div class="td-country">${esc(c.hq_country)}</div></td>
       <td><span class="td-category">${esc(c.main_category)}</span></td>
       <td><div class="td-products">${esc(c.key_products)}</div></td>
       <td>${c.fda_approved ? `<span class="td-fda-yes">✓ FDA</span>` : `<span class="td-fda-no">—</span>`}</td>
+      <td><a class="td-about" href="companies/${slug}.html">Profile →</a></td>
+      <td>
+        ${isVerified
+          ? `<span class="verified-badge">
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor" stroke="none"/>
+               </svg>
+               SterIndex Verified
+             </span>`
+          : `<span class="pending-badge">⏳ Pending Verification</span>`
+        }
+      </td>
       <td>
         ${c.premium_link_active
           ? `<a class="btn-visit" href="${esc(c.website_url)}" target="_blank" rel="noopener">
@@ -354,7 +400,8 @@ function renderTable() {
              </button>`
         }
       </td>
-    </tr>`).join("");
+    </tr>`;
+  }).join("");
 }
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────

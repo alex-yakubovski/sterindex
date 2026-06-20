@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Endoscope Reprocessing Failures Persist Despite Updated Guidelines — SterIndex</title>
+<meta name="description" content="Why Endoscope Reprocessing Failures Persist Despite Updated Guidelines — SterIndex Intelligence">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════
+   SterIndex — Global Design System
+   Shared by: blog.html, post pages
+════════════════════════════════════════════════════════ */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#0c1410; --ink2:#1e3028; --mid:#3a5a48; --sub:#6b8c7a;
+  --pale:#a8c4b4; --rim:#d4e4db; --bg:#f0f5f2; --paper:#f8faf9;
+  --white:#ffffff; --green:#1a7a45; --green2:#2ea65c; --green-pale:#e4f3eb;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --max:900px;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+
+/* ── Shared topbar ── */
+.site-topbar{background:var(--ink);padding:.7rem 2rem;border-bottom:3px solid var(--green);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.site-logo{font-family:var(--cond);font-size:1.5rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--white);text-decoration:none;}
+.site-logo em{color:var(--green2);font-style:normal;}
+.site-topnav{display:flex;align-items:center;gap:1.5rem;}
+.site-topnav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pale);text-decoration:none;transition:color .15s;}
+.site-topnav a:hover{color:var(--green2);}
+
+/* ── Shared footer ── */
+.site-footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;font-family:var(--mono);font-size:11px;color:var(--sub);letter-spacing:.05em;}
+.site-footer-inner{max-width:1100px;margin:0 auto;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;}
+.site-footer-links{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+.site-footer-links a{color:var(--sub);text-decoration:none;transition:color .15s;}
+.site-footer-links a:hover{color:var(--green2);}
+
+/* ════════════════════════════════════════════════════════
+   BLOG INDEX PAGE
+════════════════════════════════════════════════════════ */
+
+.blog-header{background:var(--ink2);border-bottom:1px solid #2a4035;padding:2.5rem 2rem;}
+.blog-header-inner{max-width:var(--max);margin:0 auto;}
+.blog-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--green2);margin-bottom:.75rem;display:flex;align-items:center;gap:10px;}
+.blog-kicker::before{content:'';display:inline-block;width:24px;height:2px;background:var(--green2);}
+.blog-header h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:600;color:var(--paper);line-height:1.1;margin-bottom:.5rem;}
+.blog-subtitle{font-family:var(--mono);font-size:12px;color:var(--sub);}
+
+.blog-index{max-width:var(--max);margin:0 auto;padding:2.5rem 2rem 4rem;width:100%;flex:1;}
+.blog-list{display:flex;flex-direction:column;border-top:1px solid var(--rim);}
+
+.blog-row{
+  display:grid;
+  grid-template-columns:130px 90px 1fr 24px;
+  align-items:center;
+  gap:1.25rem;
+  padding:1.1rem 0;
+  border-bottom:1px solid var(--rim);
+  text-decoration:none;
+  color:inherit;
+  transition:background .15s;
+  position:relative;
+}
+.blog-row::before{content:'';position:absolute;left:-2rem;right:-2rem;top:0;bottom:0;background:var(--green-pale);opacity:0;transition:opacity .15s;pointer-events:none;}
+.blog-row:hover::before{opacity:1;}
+.blog-row:hover .blog-row-title{color:var(--green);}
+.blog-row:hover .blog-row-arrow{color:var(--green);transform:translateX(4px);}
+
+.blog-row-date{font-family:var(--mono);font-size:11px;color:var(--sub);position:relative;z-index:1;}
+.blog-row-type{
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 10px;border-radius:100px;display:inline-block;text-align:center;
+  position:relative;z-index:1;width:fit-content;
+}
+.tag-article{background:var(--green-pale);color:#1a5c34;border:1px solid #a8d8be;}
+.tag-digest{background:#e4e9f3;color:#2a3e7a;border:1px solid #b8c4e8;}
+.blog-row-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);transition:color .15s;position:relative;z-index:1;}
+.blog-row-arrow{font-family:var(--mono);font-size:16px;color:var(--pale);transition:color .15s,transform .15s;position:relative;z-index:1;}
+
+.blog-empty{padding:3rem;text-align:center;font-family:var(--mono);font-size:13px;color:var(--sub);}
+
+@media(max-width:600px){
+  .blog-row{grid-template-columns:1fr 18px;grid-template-areas:"date arrow" "type type" "title title";row-gap:.4rem;}
+  .blog-row-date{grid-area:date;}
+  .blog-row-arrow{grid-area:arrow;}
+  .blog-row-type{grid-area:type;}
+  .blog-row-title{grid-area:title;font-size:1rem;}
+}
+
+/* ════════════════════════════════════════════════════════
+   POST PAGE
+════════════════════════════════════════════════════════ */
+
+.post-page{max-width:740px;margin:3rem auto;padding:0 2rem;flex:1;width:100%;}
+
+.post-article{margin-bottom:2.5rem;}
+
+.post-meta{display:flex;align-items:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap;}
+.post-type-badge{
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--ink2);color:var(--pale);padding:4px 12px;border-radius:100px;
+}
+.post-date{font-family:var(--mono);font-size:12px;color:var(--sub);}
+
+.post-title{
+  font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:600;
+  line-height:1.15;color:var(--ink);margin-bottom:1.25rem;letter-spacing:-.01em;
+}
+
+.post-byline{
+  display:flex;align-items:center;gap:8px;
+  padding:.85rem 1.1rem;background:var(--paper);
+  border-left:3px solid var(--green);border-radius:0 6px 6px 0;
+  margin-bottom:2.25rem;
+}
+.post-byline-label{font-family:var(--mono);font-size:11px;color:var(--sub);}
+.post-byline-name{font-family:var(--mono);font-size:12px;color:var(--ink2);font-weight:500;}
+
+.post-content{font-family:var(--serif);font-size:1.15rem;line-height:1.85;color:#1c2e24;}
+.post-content p{margin-bottom:1.5rem;}
+.post-content h2{font-family:var(--cond);font-size:1.3rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin:2rem 0 1rem;}
+.post-content h3{font-family:var(--cond);font-size:1.1rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .75rem;}
+.post-content ul,.post-content ol{margin:0 0 1.5rem 1.5rem;font-family:var(--body);font-size:1rem;color:var(--mid);}
+.post-content li{margin-bottom:.5rem;line-height:1.7;}
+.post-content a{color:var(--green);text-decoration:underline;text-decoration-color:rgba(26,122,69,.35);}
+.post-content a:hover{color:var(--green2);}
+.post-content blockquote{border-left:3px solid var(--green);padding-left:1.25rem;margin:1.5rem 0;color:var(--mid);font-style:italic;}
+.post-content code{font-family:var(--mono);font-size:.85em;background:var(--paper);padding:2px 6px;border-radius:3px;border:1px solid var(--rim);}
+.post-content strong{color:var(--ink);}
+
+/* ── CTA Footer ── */
+.post-cta{
+  border:2px solid var(--green);border-radius:8px;
+  background:var(--paper);padding:1.75rem 2rem;margin-bottom:2rem;
+}
+.post-cta-inner p{font-size:14px;line-height:1.8;color:var(--mid);margin-bottom:1rem;}
+.post-cta-inner p:last-child{margin-bottom:0;}
+.post-cta-contact{font-family:var(--mono);font-size:13px;color:var(--ink2);}
+.post-cta-contact a{color:var(--green);text-decoration:none;font-weight:500;}
+.post-cta-contact a:hover{color:var(--green2);}
+
+.post-back-link{margin-bottom:1rem;}
+.post-back-link a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);text-decoration:none;}
+.post-back-link a:hover{color:var(--green2);}
+
+@media(max-width:600px){
+  .post-page{margin:2rem auto;padding:0 1rem;}
+  .post-content{font-size:1.02rem;}
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-topbar">
+  <a class="site-logo" href="../index.html">Ster<em>Index</em></a>
+  <nav class="site-topnav">
+    <a href="../blog.html">&larr; Blog Index</a>
+    <a href="../index.html">News</a>
+    <a href="../producers.html">Producers</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="post-page">
+  <article class="post-article">
+
+    <div class="post-meta">
+      <span class="post-type-badge">Article</span>
+      <span class="post-date">June 10, 2026</span>
+    </div>
+
+    <h1 class="post-title">Why Endoscope Reprocessing Failures Persist Despite Updated Guidelines</h1>
+
+    <div class="post-byline">
+      <span class="post-byline-label">By</span>
+      <span class="post-byline-name">Alexander Yakubovski, Senior Compliance Analyst</span>
+    </div>
+
+    <section class="post-content">
+      <p>Endoscope-associated infections remain one of the most stubborn problems in sterile
+processing, despite more than a decade of revised guidelines from AAMI, the CDC, and
+device manufacturers. The gap between published protocol and bedside practice continues
+to surface in surveillance data and recall notices alike.</p>
+<h2>What the Data Shows</h2>
+<p>Surveillance studies consistently point to manual cleaning as the most failure-prone step
+in the reprocessing cycle. Channel brushing, often performed under time pressure between
+procedures, is the stage most frequently associated with residual bioburden on
+post-cleaning verification tests.</p>
+<p>Automated endoscope reprocessors have reduced variability, but they cannot compensate for
+inadequate pre-cleaning. If biofilm forms before a scope reaches the AER, high-level
+disinfection chemistry may not fully penetrate it.</p>
+<h2>Where Facilities Are Falling Short</h2>
+<p>Three recurring issues appear across audit reports:</p>
+<ul>
+<li>Inconsistent leak testing before immersion</li>
+<li>Drying and storage cabinets not maintained to manufacturer specification</li>
+<li>Staff turnover outpacing competency verification cycles</li>
+</ul>
+<p>None of these are new problems. What has changed is the volume of procedures performed
+per scope per day, which compresses the time available for each reprocessing cycle.</p>
+<h2>The Path Forward</h2>
+<p>Some institutions have begun borescope inspection of channels as a verification step
+beyond visual inspection alone. Early adopters report catching residual debris that
+passed standard visual checks. Wider adoption remains limited by cost and training
+requirements.</p>
+    </section>
+
+  </article>
+
+  <!-- ── Commercial CTA Footer ── -->
+  <section class="post-cta">
+    <div class="post-cta-inner">
+      <p>
+        Analytical data provided by <strong>SterIndex Intelligence</strong>.
+        Want your equipment compliance data to be accurately mapped and
+        verified in our global directory? Secure your
+        <strong>"Verified Vendor"</strong> status today.
+      </p>
+      <p class="post-cta-contact">
+        Contact our data team at:
+        <a href="mailto:info@sterindex.com">info@sterindex.com</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="post-back-link">
+    <a href="../blog.html">&larr; Return to Blog Index</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>&copy; <span id="yr"></span> SterIndex &middot; All rights reserved</span>
+    <nav class="site-footer-links">
+      <a href="../index.html">News</a>
+      <a href="../producers.html">Producers</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../about.html">About Us</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../legal.html">Legal Notice</a>
+    </nav>
+  </div>
+</footer>
+
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
