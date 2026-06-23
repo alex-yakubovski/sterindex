@@ -97,12 +97,23 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:4rem;f
   .footer-bottom{flex-direction:column;align-items:flex-start;padding:1rem;}
   .footer-links{gap:.75rem;}
 }
+
+.topbar{justify-content:center;gap:0;padding:.5rem 2rem;}
+.topbar-logo{text-decoration:none;flex-shrink:0;}
+.topbar-logo svg{display:block;}
+.topbar-inner{max-width:1200px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <a class="topbar-logo" href="index.html">Ster<em>Index</em></a>
+  <a class="topbar-logo" href="index.html" style="display:flex;align-items:center;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" role="img" width="200" height="44" aria-label="SterIndex">
+  <polygon points="27,2 50,11 50,33 27,48 4,33 4,11" fill="none" stroke="#2ea65c" stroke-width="1.8"/>
+  <polygon points="27,9 43,16 43,31 27,42 11,31 11,16" fill="none" stroke="#2ea65c" stroke-width="0.7" opacity="0.35"/>
+  <polyline points="17,27 23,34 38,18" fill="none" stroke="#2ea65c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="60" y1="8" x2="60" y2="42" stroke="#2ea65c" stroke-width="0.8" opacity="0.3"/>
+  <text x="70" y="36" font-family="'Barlow Condensed',Arial Narrow,sans-serif" font-size="34" font-weight="700" letter-spacing="0.5" fill="#f0f5f2">STER<tspan fill="#2ea65c">INDEX</tspan></text>
+</svg></a>
   <a class="back-link" href="index.html">Back to index</a>
 </div>
 

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" role="img" width="260" height="56">
+  <title>SterIndex — Sterile Technology Intelligence</title>
+  <desc>SterIndex logo with compliance verification shield</desc>
+  <polygon points="27,2 50,11 50,33 27,48 4,33 4,11" fill="none" stroke="#2ea65c" stroke-width="1.8"/>
+  <polygon points="27,9 43,16 43,31 27,42 11,31 11,16" fill="none" stroke="#2ea65c" stroke-width="0.7" opacity="0.35"/>
+  <polyline points="17,27 23,34 38,18" fill="none" stroke="#2ea65c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="60" y1="8" x2="60" y2="42" stroke="#2ea65c" stroke-width="0.8" opacity="0.3"/>
+  <text x="70" y="36" font-family="'Barlow Condensed', Arial Narrow, sans-serif" font-size="34" font-weight="700" letter-spacing="0.5" fill="#f0f5f2">STER<tspan fill="#2ea65c">INDEX</tspan></text>
+</svg>

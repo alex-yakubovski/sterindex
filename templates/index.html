@@ -30,8 +30,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1
 .masthead-left{font-family:var(--mono);font-size:11px;color:var(--pale);letter-spacing:.08em;}
 .masthead-left span{display:block;margin-bottom:4px;}
 .logo-block{text-align:center;}
-.logo{font-family:var(--cond);font-size:clamp(2.8rem,6vw,4.8rem);font-weight:700;letter-spacing:-.01em;color:var(--white);line-height:1;text-transform:uppercase;text-decoration:none;display:inline-block;}
-.logo em{color:var(--green2);font-style:normal;}
+.logo-svg-link{display:inline-block;text-decoration:none;line-height:0;}
+.logo-svg-link svg{display:block;}
 .logo-tagline{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--sub);margin-top:6px;}
 .masthead-right{font-family:var(--mono);font-size:11px;color:var(--pale);text-align:right;letter-spacing:.05em;line-height:1.7;}
 .masthead-right .count{font-family:var(--cond);font-size:2.2rem;font-weight:700;color:var(--green2);display:block;line-height:1;}
@@ -108,6 +108,11 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
   .footer-legal{padding:1.5rem 1rem;}
   .footer-bottom{padding:1rem;}
 }
+
+.topbar{justify-content:center;gap:0;padding:.5rem 2rem;}
+.topbar-logo{text-decoration:none;flex-shrink:0;}
+.topbar-logo svg{display:block;}
+.topbar-inner{max-width:1200px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
 </style>
 </head>
 <body>
@@ -121,7 +126,15 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
         <span>Medical Edition</span>
       </div>
       <div class="logo-block">
-        <a class="logo" href="index.html">Ster<em>Index</em></a>
+        <a class="logo-svg-link" href="index.html" aria-label="SterIndex home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" width="280" height="60" role="img" aria-label="SterIndex">
+            <polygon points="27,2 50,11 50,33 27,48 4,33 4,11" fill="none" stroke="#2ea65c" stroke-width="2"/>
+            <polygon points="27,9 43,16 43,31 27,42 11,31 11,16" fill="none" stroke="#2ea65c" stroke-width="0.8" opacity="0.35"/>
+            <polyline points="17,27 23,34 38,18" fill="none" stroke="#2ea65c" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="60" y1="8" x2="60" y2="42" stroke="#2ea65c" stroke-width="0.8" opacity="0.3"/>
+            <text x="70" y="36" font-family="'Barlow Condensed',Arial Narrow,sans-serif" font-size="34" font-weight="700" letter-spacing="0.5" fill="#f0f5f2">STER<tspan fill="#2ea65c">INDEX</tspan></text>
+          </svg>
+        </a>
         <div class="logo-tagline">// Surgical · Endoscopy · Sterilization</div>
       </div>
       <div class="masthead-right">
@@ -146,7 +159,6 @@ footer{background:var(--ink);border-top:3px solid var(--green);margin-top:auto;f
       <a href="producers.html">Producers</a>
       <span class="nav-dot">·</span>
       <a href="blog.html">Blog</a>
-      <span class="nav-built">Built {{ built_at }}</span>
     </div>
   </div>
 </header>
