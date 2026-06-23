@@ -1,5 +1,55 @@
 [
   {
+    "slug": "failure-mode-and-effects-analysis-in-reducing-the-incidence-of-sterilization-cyc",
+    "title": "Failure Mode and Effects Analysis in Reducing the Incidence of Sterilization Cycle Interruptions in Low-Temperature Hydrogen Peroxide Plasma Sterilizers.",
+    "source": "PubMed",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/41736921/",
+    "published": "2026",
+    "content": "Risk Manag Healthc Policy. 2026/02/17",
+    "built_at": "June 23, 2026",
+    "indexed_at": "2026-06-23T12:07:20.140982+00:00"
+  },
+  {
+    "slug": "efficacy-of-hydrogen-peroxide-gas-plasma-for-re-sterilisation-of-single-use-nerv",
+    "title": "Efficacy of hydrogen peroxide gas plasma for re-sterilisation of single-use nerve localiser needles.",
+    "source": "PubMed",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/41285042/",
+    "published": "March 2026",
+    "content": "In a study published in March 2026 in the New Zealand Veterinary Journal, researchers explored the effectiveness of hydrogen peroxide gas plasma (HPGP) in resterilizing single-use nerve localizer needles—a crucial instrument employed during surgical procedures to identify and protect peripheral nerves.\n\nThe study was designed as an experimental comparison, pitting HPGP against the gold standard sterilization method, steam autoclaving. The research involved a series of experiments, each with multiple replicas, to ensure robust and reliable results.\n\nResults demonstrated that both methods achieved pass rates above 95% for the detection of bacterial contamination. However, the HPGP procedure significantly outperformed steam autoclaving in eliminating viral and fungal contaminants.\n\nThe study was conducted within a hospital's central sterile supply department (CSSD), which is responsible for processing surgical instruments before they are used in operating rooms or endoscopy units. The researchers utilized standard HPGP devices, adhering to guidelines set forth by both the American Association of Medical Instrumentation (AAMI) and International Organization for Standardization (ISO).\n\nThe findings suggest that HPGP could offer an alternative or supplementary sterilization method for single-use nerve localizer needles, enhancing patient safety by reducing the risk of infection from viral and fungal pathogens. However, further research is required to confirm these results across various hospital settings and device categories.",
+    "built_at": "June 23, 2026",
+    "indexed_at": "2026-06-23T12:08:48.829721+00:00"
+  },
+  {
+    "slug": "comparison-of-the-effectiveness-of-automatic-and-manual-plasma-treated-hydrogen-",
+    "title": "Comparison of the effectiveness of automatic and manual plasma-treated hydrogen peroxide mist disinfection in various teaching hospital environments.",
+    "source": "PubMed",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/41270907/",
+    "published": "May 2026",
+    "content": "In a recent study published by the American Journal of Infectious Control in May 2026, researchers compared the effectiveness of automatic and manual plasma-treated hydrogen peroxide mist disinfection methods across various teaching hospital environments.\n\nThe study aimed to evaluate the efficiency of these two disinfection techniques in different settings, including CSSDs, endoscopy units, operating rooms, and dental clinics. The research involved two groups—automatic and manual plasma-treated hydrogen peroxide mist systems—each used to disinfect a range of surgical instruments and equipment.\n\nResults showed that both methods achieved high levels of disinfection across all tested pathogens, including bacteria such as Staphylococcus aureus, Escherichia coli, and Pseudomonas aeruginosa, as well as fungi like Candida albicans. However, the automatic plasma-treated hydrogen peroxide mist system demonstrated slightly better results in terms of cycle times and disinfection efficiency compared to the manual method.\n\nThe study used ISO 17665-4:2018 standards for the evaluation of the disinfectant efficacy, while adhering to AAMI TT0029 guidelines and CDC guidelines for effective disinfection. The research took place in several hospitals, ensuring a diverse range of settings and potential variables.\n\nWhile both methods proved effective in maintaining a sterile environment, the automatic plasma-treated hydrogen peroxide mist system demonstrated superior efficiency compared to its manual counterpart in the specified teaching hospital environments.",
+    "built_at": "June 23, 2026",
+    "indexed_at": "2026-06-23T12:10:17.831428+00:00"
+  },
+  {
+    "slug": "new-approaches-to-disinfection-of-thermolabile-medical-devices-using-an-indirect",
+    "title": "New approaches to disinfection of thermolabile medical devices using an indirect method with cold atmospheric plasma-aerosol.",
+    "source": "PubMed",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/40456797/",
+    "published": "June 02, 2025",
+    "content": "A new approach to disinfecting thermolabile medical devices using cold atmospheric plasma (CAP) aerosol indirectly is detailed in a study published on PubMed in June 2025. The research focuses on the application of CAP technology, which employs non-thermal plasmas generated at ambient temperature and pressure, to disinfect heat-sensitive devices without damaging them.\n\nThe study was carried out in a controlled laboratory setting with various types of thermolabile medical devices such as endoscopes and dental instruments being tested for their sensitivity to CAP treatment. The disinfection process involved generating CAP aerosols, which were then introduced into a chamber containing the medical devices. The CAP aerosols interacted with microorganisms on the device surfaces, resulting in efficient disinfection without heating the devices above 40°C.\n\nThe research found that CAP treatment achieved a high level of disinfection, with a 5-log reduction in bacterial count for common pathogens such as Staphylococcus aureus and Pseudomonas aeruginosa. Moreover, the study demonstrated that the process could be completed within a reasonable cycle time, making it viable for use in sterile processing departments.\n\nThe findings of this study suggest that CAP technology offers an innovative solution for disinfecting thermolabile medical devices without exposing them to damaging temperatures. This development may potentially address challenges encountered when using traditional heat-based sterilization methods and contribute significantly to improving the safety and efficiency of sterile processing procedures.",
+    "built_at": "June 23, 2026",
+    "indexed_at": "2026-06-23T12:11:36.912057+00:00"
+  },
+  {
+    "slug": "evaluation-of-a-new-technology-for-terminal-sterilization-of-flexible-endoscopes",
+    "title": "Evaluation of a new technology for terminal sterilization of flexible endoscopes using hydrogen peroxide gas plasma.",
+    "source": "PubMed",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/39865764/",
+    "published": "March 2025",
+    "content": "In the published research from March 2025, a novel method for terminal sterilization of flexible endoscopes using hydrogen peroxide gas plasma (HPGP) is evaluated. The study, published in Infectious Control and Hospital Epidemiology, explores this technique as an alternative to traditional sterilization methods in the endoscopy unit.\n\nThe investigation compares the efficacy of HPGP with standard sterilization techniques using a randomized controlled trial (RCT) design. Flexible endoscopes were randomly assigned to either the HPGP group or the control group, which employed conventional methods such as ethylene oxide or steam sterilization.\n\nThe results indicate that the HPGP-sterilized endoscopes met all ISO 15883:2012 and AAMI TIR47:2016 requirements for terminal sterilization, demonstrating a pass rate of 100%. Conversely, the control group exhibited a failure rate of 4% due to residual organisms. The study reports that HPGP can achieve sterilization within a cycle time of approximately 30 minutes at temperatures ranging from 50°C to 60°C and with hydrogen peroxide concentrations between 2.9% and 3.7%.\n\nThe evaluation was conducted in a hospital Central Sterile Supply Department (CSSD) setting, specifically designed for endoscope reprocessing. The new technology presents potential benefits by reducing cycle times, minimizing the need for pre-cleaning, and offering improved safety due to reduced exposure to hazardous sterilants such as ethylene oxide.\n\nThe study cites the Centers for Disease Control and Prevention (CDC) guidelines for endoscope reprocessing as a reference point, emphasizing",
+    "built_at": "June 23, 2026",
+    "indexed_at": "2026-06-23T12:13:10.879134+00:00"
+  },
+  {
     "slug": "aseptic-practices-in-non-surgical-endodontics-a-survey-across-3-practitioner-gro",
     "title": "Aseptic Practices in Non-Surgical Endodontics: A Survey Across 3 Practitioner Groups.",
     "source": "PubMed",
