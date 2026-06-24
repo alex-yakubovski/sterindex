@@ -50,22 +50,24 @@ COMPANIES_DIR.mkdir(exist_ok=True)
 # ── RSS Sources ────────────────────────────────────────────────────────────────
 
 RSS_FEEDS = [
-    # ── PubMed: Sterile Processing (NCBI E-utilities — no bot blocking) ────────
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=surgical+instrument+sterilization&retmax=10&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=endoscope+reprocessing+high+level+disinfection&retmax=10&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=autoclave+steam+sterilization+hospital&retmax=10&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=sterile+processing+department+SPD&retmax=8&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=medical+device+decontamination+reprocessing&retmax=8&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=surgical+site+infection+instrument+sterilization&retmax=8&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=hydrogen+peroxide+plasma+sterilization+medical&retmax=8&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=flexible+endoscope+disinfection+contamination&retmax=8&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=central+sterile+supply+department&retmax=8&retmode=json"),
-    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=biological+indicator+sterilization+validation&retmax=8&retmode=json"),
+    # ── PubMed: Surgical Instrument Sterilization (hyper-specific searches) ────
+    # Each search is narrowly scoped to instrument sterilization topics only
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=surgical+instrument+sterilization[Title/Abstract]&retmax=10&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=endoscope+reprocessing[Title/Abstract]&retmax=10&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=autoclave+sterilization+surgical[Title/Abstract]&retmax=10&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=sterile+processing+department[Title/Abstract]&retmax=8&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=medical+instrument+decontamination[Title/Abstract]&retmax=8&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=high+level+disinfection+endoscope[Title/Abstract]&retmax=8&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=hydrogen+peroxide+plasma+sterilization[Title/Abstract]&retmax=8&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=washer+disinfector+surgical+instruments[Title/Abstract]&retmax=8&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=central+sterile+supply+department[Title/Abstract]&retmax=8&retmode=json&sort=pub+date"),
+    ("PubMed", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=biological+indicator+sterilization[Title/Abstract]&retmax=8&retmode=json&sort=pub+date"),
 
-    # ── FDA: Medical Device Safety Alerts only ─────────────────────────────────
-    # Uses the medical devices specific feed, not the general MedWatch feed
-    ("FDA Medical Devices", "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/medical-devices/rss.xml"),
-    ("FDA Recalls (Devices)", "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/recalls/rss.xml"),
+    # ── FDA Recalls — device sterilization related only (filtered by keywords) ─
+    ("FDA Recalls", "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/recalls/rss.xml"),
+
+    # ── Infection Control Today ────────────────────────────────────────────────
+    ("Infection Control Today", "https://www.infectioncontroltoday.com/rss.xml"),
 ]
 
 # ── Verified companies (top 20 industry leaders) ──────────────────────────────
@@ -438,22 +440,49 @@ def parse_feed(xml_text: str, source_name: str) -> list[dict]:
 
 
 def fetch_pubmed_json(url: str, source_name: str, client: httpx.Client) -> list[dict]:
-    """Fetch PubMed IDs via E-utilities JSON, then fetch summaries."""
+    """Fetch PubMed IDs via E-utilities JSON, then fetch summaries with retry."""
     items = []
     try:
-        resp = client.get(url)
-        resp.raise_for_status()
+        # Search step — with retry on 429
+        for attempt in range(3):
+            resp = client.get(url)
+            if resp.status_code == 429:
+                wait = 2 ** attempt  # 1s, 2s, 4s
+                print(f"    [RATE LIMIT] Waiting {wait}s before retry…")
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            break
+        else:
+            print(f"    [WARN] PubMed search gave up after retries")
+            return items
+
         data = resp.json()
         ids  = data.get("esearchresult", {}).get("idlist", [])
         if not ids:
             return items
-        # Fetch summaries for found IDs
+
+        # Small pause between search and summary calls
+        time.sleep(0.4)
+
+        # Summary step — with retry on 429
         summary_url = (
             "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
             f"?db=pubmed&id={','.join(ids)}&retmode=json"
         )
-        sresp = client.get(summary_url)
-        sresp.raise_for_status()
+        for attempt in range(3):
+            sresp = client.get(summary_url)
+            if sresp.status_code == 429:
+                wait = 2 ** (attempt + 1)
+                print(f"    [RATE LIMIT] Waiting {wait}s before retry…")
+                time.sleep(wait)
+                continue
+            sresp.raise_for_status()
+            break
+        else:
+            print(f"    [WARN] PubMed summary gave up after retries")
+            return items
+
         sdata = sresp.json()
         for uid in ids:
             rec = sdata.get("result", {}).get(uid, {})
@@ -477,10 +506,14 @@ def fetch_fresh_articles() -> list[dict]:
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
 
     with httpx.Client(timeout=15.0, follow_redirects=True, headers=headers) as client:
-        for source_name, url in RSS_FEEDS:
+        for i, (source_name, url) in enumerate(RSS_FEEDS):
             print(f"  Fetching {source_name}: {url[:70]}…")
             try:
                 if "eutils.ncbi.nlm.nih.gov" in url:
+                    # Respect NCBI rate limit: max 3 requests/sec without API key
+                    # Use 1 second delay between all E-utilities calls
+                    if i > 0:
+                        time.sleep(1.0)
                     items = fetch_pubmed_json(url, source_name, client)
                 else:
                     resp = client.get(url)
@@ -730,22 +763,51 @@ def main():
     print(f"\n  {len(fresh_raw)} total items fetched from feeds")
 
     # 3. Find genuinely new articles
-    # Filter to sterile tech topics only — discard off-topic articles
-    TOPIC_KEYWORDS = [
-        "steril", "disinfect", "decontaminat", "autoclave", "endoscop",
-        "reprocess", "surgical instrument", "sterile processing", "SPD",
-        "washer-disinfector", "high-level disinfection", "HLD", "biological indicator",
-        "chemical indicator", "instrument cleaning", "central sterile",
-        "CSSD", "operating room infection", "surgical site infection",
-        "medical device", "sterilization", "antiseptic", "aseptic",
-        "contamination", "infection prevention", "implant sterilization",
-        "ethylene oxide", "hydrogen peroxide", "plasma sterilization",
-        "steam sterilization", "instrument reprocessing", "flexible scope",
+    # ── Strict topic filter: ONLY medical instrument sterilization content ────────
+    # Must match at least one PRIMARY keyword (core sterilization topics)
+    # AND must NOT match any EXCLUSION keywords (off-topic content)
+    PRIMARY_KEYWORDS = [
+        "sterilization", "sterilisation", "sterilizer", "steriliser",
+        "autoclave", "autoclaving",
+        "washer-disinfector", "washer disinfector",
+        "high-level disinfection", "high level disinfection", "HLD",
+        "endoscope reprocessing", "endoscope cleaning", "endoscope disinfection",
+        "flexible endoscope", "rigid endoscope",
+        "sterile processing", "sterile processing department", "SPD", "CSSD",
+        "central sterile", "central sterile supply",
+        "surgical instrument cleaning", "surgical instrument reprocessing",
+        "surgical instrument sterilization", "surgical instrument care",
+        "instrument reprocessing", "instrument decontamination",
+        "instrument sterilization", "instrument cleaning",
+        "ethylene oxide sterilization", "EO sterilization",
+        "hydrogen peroxide sterilization", "plasma sterilization",
+        "steam sterilization", "steam sterilisation",
+        "biological indicator", "chemical indicator",
+        "sterility assurance", "sterilization validation",
+        "sterilization monitoring", "decontamination",
+        "reprocessing of medical devices", "medical device reprocessing",
+        "low-temperature sterilization", "flash sterilization",
+        "enzymatic detergent", "instrument detergent",
+    ]
+
+    EXCLUSION_KEYWORDS = [
+        "food recall", "dietary supplement", "drug recall", "vaccine",
+        "cancer", "oncology", "diabetes", "cardiology", "psychiatry",
+        "mental health", "obesity", "nutrition", "allergy",
+        "antibiotic resistance", "antimicrobial resistance",
+        "skin care", "wound care", "hand hygiene",
+        "covid", "influenza", "pandemic", "epidemic",
+        "blood pressure", "cholesterol", "kidney", "liver",
+        "dental caries", "oral health",
     ]
 
     def is_on_topic(article: dict) -> bool:
         text = (article["title"] + " " + article["description"]).lower()
-        return any(kw.lower() in text for kw in TOPIC_KEYWORDS)
+        # Must NOT match any exclusion keyword
+        if any(exc.lower() in text for exc in EXCLUSION_KEYWORDS):
+            return False
+        # Must match at least one primary keyword
+        return any(kw.lower() in text for kw in PRIMARY_KEYWORDS)
 
     fresh_raw = [r for r in fresh_raw if is_on_topic(r)]
     print(f"  {len(fresh_raw)} articles passed topic relevance filter")
